@@ -12,7 +12,7 @@ android {
         targetSdk 33
         versionCode 310022200
         // Ver. Structure: Gen.Maj.Min.Build
-        versionName "3.05.28.22104(alpha)"
+        versionName "3.05.30.23000"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
         multiDexEnabled true
