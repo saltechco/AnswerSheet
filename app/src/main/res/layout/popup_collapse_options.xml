@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eightbitlab.com.blurview.BlurView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/collapse_options_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_background_solid">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/close_window"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/edu_level_bad"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/close"
+            app:tint="#f5f5f5" />
+
+        <ImageButton
+            android:id="@+id/collapse_window"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/collapse_window"
+            app:tint="@color/elements_color_tint" />
+
+        <ImageButton
+            android:id="@+id/fullscreen_window"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:padding="10.75dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/fullscreen_window"
+            app:tint="@color/elements_color_tint" />
+
+    </LinearLayout>
+</eightbitlab.com.blurview.BlurView>

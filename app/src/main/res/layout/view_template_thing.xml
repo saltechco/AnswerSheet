@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/row_thing_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/row_button_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:layoutDirection="ltr"
+    android:orientation="horizontal"
+    android:paddingStart="5dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="5dp"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:id="@+id/row_thing_text"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="1"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/estedad_light"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:paddingLeft="16dp"
+        android:singleLine="true"
+        android:text="Android Studio Flamingo"
+        android:textColor="@color/colorAccent"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/row_thing_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="13dp"
+        android:padding="2.5dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/android"
+        app:tint="@color/colorAccent" />
+
+</LinearLayout>

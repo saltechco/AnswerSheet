@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/dialog_parent"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:animateLayoutChanges="true"
+	android:clickable="true"
+	android:focusable="true"
+	android:layoutDirection="ltr"
+	android:tag="@string/app_name"
+	android:visibility="gone"
+	tools:ignore="DuplicateClickableBoundsCheck">
+
+	<View
+		android:id="@+id/dialog_focus"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:focusable="true"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<androidx.cardview.widget.CardView
+		android:id="@+id/dialog_card"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="3dp"
+		android:alpha="0"
+		android:animateLayoutChanges="true"
+		android:scaleX="0"
+		android:scaleY="0"
+		app:cardCornerRadius="15dp"
+		app:cardElevation="10dp"
+		app:cardPreventCornerOverlap="true"
+		app:cardUseCompatPadding="true"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:animateLayoutChanges="true">
+
+			<TextView
+				android:id="@+id/dialog_title_text"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginLeft="16dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginEnd="10dp"
+				android:layout_marginRight="10dp"
+				android:fontFamily="@font/estedad_light"
+				android:text="عنوان دیالوگ"
+				android:textColor="@color/colorAccent"
+				android:textSize="18sp"
+				android:textStyle="bold"
+				android:visibility="gone"
+				app:layout_constraintEnd_toStartOf="@+id/dialog_icon_image"
+				app:layout_constraintRight_toLeftOf="@id/dialog_icon_image"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<ImageView
+				android:id="@+id/dialog_icon_image"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_marginEnd="20dp"
+				android:layout_marginRight="20dp"
+				android:src="@drawable/text"
+				android:visibility="gone"
+				app:layout_constraintBottom_toBottomOf="@id/dialog_title_text"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="@id/dialog_title_text"
+				app:tint="@color/colorAccent" />
+
+			<TextView
+				android:id="@+id/dialog_message_text"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:layout_marginBottom="17dp"
+				android:fadeScrollbars="true"
+				android:fontFamily="@font/estedad_light"
+				android:maxHeight="300dp"
+				android:scrollbarSize="2dp"
+				android:scrollbars="vertical"
+				android:text="متن پیام دیالوگ"
+				android:textSize="14sp"
+				android:verticalScrollbarPosition="left"
+				android:visibility="gone"
+				app:layout_constraintBottom_toTopOf="@id/dialog_content_frame"
+				app:layout_constraintEnd_toStartOf="@+id/dialog_progress_bar"
+				app:layout_constraintStart_toStartOf="@+id/dialog_title_text"
+				app:layout_constraintTop_toBottomOf="@+id/dialog_title_text"
+				app:layout_constraintVertical_bias="0.0" />
+
+			<androidx.fragment.app.FragmentContainerView
+				android:id="@+id/dialog_content_frame"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:tag="dialog_content"
+				android:visibility="gone"
+				app:layout_constraintBottom_toTopOf="@+id/dialog_buttons"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/dialog_message_text" />
+
+			<ProgressBar
+				android:id="@+id/dialog_progress_bar"
+				style="?android:attr/progressBarStyle"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_marginLeft="8dp"
+				android:visibility="gone"
+				app:layout_constraintBottom_toBottomOf="@id/dialog_message_text"
+				app:layout_constraintEnd_toEndOf="@+id/dialog_icon_image"
+				app:layout_constraintStart_toEndOf="@id/dialog_message_text"
+				app:layout_constraintTop_toTopOf="@id/dialog_message_text"
+				app:layout_constraintVertical_bias="0.6" />
+
+			<Button
+				android:id="@+id/dialog_natural_button"
+				style="@style/Widget.AppCompat.Button.Borderless.Colored"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:layout_marginRight="16dp"
+				android:background="@drawable/dialog_natural_button_bg"
+				android:fontFamily="@font/estedad_light"
+				android:text="ممتنع"
+				android:textColor="@color/natural_button_text_color"
+				android:visibility="gone"
+				app:layout_constraintBottom_toBottomOf="@+id/dialog_buttons"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="@+id/dialog_buttons" />
+
+			<LinearLayout
+				android:id="@+id/dialog_buttons"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginEnd="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginBottom="16dp"
+				android:orientation="horizontal"
+				android:paddingLeft="5dp"
+				android:paddingTop="8dp"
+				android:paddingRight="5dp"
+				android:paddingBottom="8dp"
+				android:visibility="gone"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toStartOf="@+id/dialog_natural_button"
+				app:layout_constraintHorizontal_bias="0.0"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/dialog_content_frame">
+
+				<Button
+					android:id="@+id/dialog_primary_button"
+					style="@style/Widget.AppCompat.Button.Borderless.Colored"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="10dp"
+					android:layout_marginRight="10dp"
+					android:background="@drawable/dialog_primary_button_bg"
+					android:elevation="20dp"
+					android:fontFamily="@font/estedad_light"
+					android:padding="10dp"
+					android:text="تأیید"
+					android:textColor="@color/colorAccent"
+					android:visibility="gone" />
+
+				<Button
+					android:id="@+id/dialog_secondary_button"
+					style="@style/Widget.AppCompat.Button.Borderless.Colored"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/dialog_secondary_button_bg"
+					android:elevation="20dp"
+					android:fontFamily="@font/estedad_light"
+					android:padding="10dp"
+					android:text="انصراف"
+					android:textColor="#DC3545"
+					android:visibility="gone" />
+			</LinearLayout>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

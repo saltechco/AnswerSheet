@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/bookmark_colors_card"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_margin="5dp"
+	android:layoutDirection="ltr"
+	app:cardBackgroundColor="@color/element_background_color"
+	app:cardCornerRadius="10dp"
+	app:cardElevation="10dp"
+	app:cardPreventCornerOverlap="true"
+	app:contentPadding="5dp">
+
+	<ScrollView
+		android:layout_width="wrap_content"
+		android:layout_height="175dp"
+		android:clipToPadding="true"
+		android:fadeScrollbars="true"
+		android:fillViewport="true"
+		android:isScrollContainer="true"
+		android:scrollbarSize="1dp"
+		android:scrollbarStyle="outsideOverlay"
+		android:verticalScrollbarPosition="left">
+
+		<LinearLayout
+			android:id="@+id/drawing_modes_layout"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+
+			<ImageButton
+				android:id="@+id/mode_text"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/text"
+				app:tint="@color/elements_color_tint" />
+
+			<ImageButton
+				android:id="@+id/mode_circle"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/circle"
+				app:tint="@color/elements_color_tint"
+				tools:ignore="ContentDescription" />
+
+			<ImageButton
+				android:id="@+id/mode_rectangle"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/rectangle"
+				app:tint="@color/elements_color_tint" />
+
+			<ImageButton
+				android:id="@+id/mode_line"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/remove_object"
+				app:tint="@color/elements_color_tint" />
+
+			<ImageButton
+				android:id="@+id/mode_path"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/path_drawing"
+				app:tint="@color/elements_color_tint" />
+
+			<ImageButton
+				android:id="@+id/mode_circle_filled"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/circle_filled"
+				app:tint="@color/elements_color_tint"
+				tools:ignore="ContentDescription" />
+
+			<ImageButton
+				android:id="@+id/mode_rectangle_filled"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/rectangle_filled"
+				app:tint="@color/elements_color_tint" />
+
+		</LinearLayout>
+
+	</ScrollView>
+</androidx.cardview.widget.CardView>

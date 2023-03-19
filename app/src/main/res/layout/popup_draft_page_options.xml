@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_margin="5dp"
+	android:layoutDirection="ltr"
+	app:cardBackgroundColor="@color/element_background_color"
+	app:cardCornerRadius="10dp"
+	app:cardElevation="10dp"
+	app:cardPreventCornerOverlap="true"
+	app:contentPadding="5dp">
+
+	<LinearLayout
+		android:id="@+id/drawing_options_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<ImageButton
+			android:id="@+id/goto_previous_page"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:adjustViewBounds="true"
+			android:background="@null"
+			android:padding="5dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/arrow_back"
+			app:tint="@color/disable_button"
+			tools:ignore="ContentDescription" />
+
+		<TextView
+			android:id="@+id/current_page_number"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:fontFamily="@font/estedad_light"
+			android:gravity="center"
+			android:includeFontPadding="false"
+			android:text="@string/page_counter_text"
+			android:textColor="@color/disable_button"
+			android:textSize="16sp"
+			android:textStyle="bold" />
+
+		<ImageButton
+			android:id="@+id/goto_next_page"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:adjustViewBounds="true"
+			android:background="@null"
+			android:padding="5dp"
+			android:rotation="180"
+			android:scaleType="fitCenter"
+			android:src="@drawable/arrow_back"
+			app:tint="@color/disable_button" />
+
+		<ImageButton
+			android:id="@+id/delete_current_page"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:layout_marginStart="5dp"
+			android:layout_marginLeft="5dp"
+			android:layout_weight="1"
+			android:adjustViewBounds="true"
+			android:background="@null"
+			android:padding="5dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/delete"
+			app:tint="@color/edu_level_bad" />
+
+	</LinearLayout>
+
+</androidx.cardview.widget.CardView>

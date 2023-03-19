@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_color"
+    android:clickable="true"
+    android:focusable="true"
+    android:layoutDirection="ltr"
+    tools:targetApi="jelly_bean_mr1">
+
+    <ImageView
+        android:id="@+id/add_category_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/add_category"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/title"
+        app:tint="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/estedad_light"
+        android:text="افزودن دسته جدید"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/add_category_image"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sub_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:fontFamily="@font/estedad_light"
+        android:text="لطفاً ابتدا نام دسته خود، و سپس شماره آخرین سؤالی که مربوط به این دسته می باشد را بنویسید."
+        android:textColor="@color/elements_color_tint"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+
+    <TextView
+        android:id="@+id/category_time_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/estedad_light"
+        android:gravity="center"
+        android:text="باید مجموع زمان دسته ها با زمان اصلی برابر باشد!\nحین تخصیص زمان، لطفاً دقت کنید.\nزیرا دیگر نمی توانید زمان دسته را تغییر دهید!"
+        android:textColor="@color/edu_level_bad"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/category_time"
+        app:layout_constraintStart_toStartOf="@+id/category_time"
+        app:layout_constraintTop_toBottomOf="@+id/category_time" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/category_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="مدت زمان دسته (ثانیه:دقیقه)"
+        android:textColorHint="@color/edit_text_hint_color"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="@+id/category_specifics"
+        app:layout_constraintStart_toStartOf="@+id/category_specifics"
+        app:layout_constraintTop_toBottomOf="@+id/current_question_number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/estedad_light"
+            android:gravity="center"
+            android:inputType="time"
+            android:maxLength="5"
+            android:singleLine="true"
+            android:textColor="@color/elements_color_tint"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/category_specifics"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sub_title">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/category_questions_number"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="تعداد سؤالات دسته"
+            android:textColor="@color/elements_color_tint"
+            android:textColorHint="@color/edit_text_hint_color"
+            app:counterEnabled="true"
+            app:counterMaxLength="3"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/estedad_light"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                android:singleLine="true"
+                android:textColor="@color/elements_color_tint"
+                android:textColorHint="@color/edit_text_hint_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/category_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:hint="نام دسته"
+            android:textColor="@color/elements_color_tint"
+            android:textColorHint="@color/text_input_bg_color"
+            android:visibility="visible"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="15dp"
+            app:boxCornerRadiusBottomStart="15dp"
+            app:boxCornerRadiusTopEnd="15dp"
+            app:boxCornerRadiusTopStart="15dp"
+            app:boxStrokeColor="@color/text_input_bg_color"
+            app:boxStrokeWidth="2dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/estedad_light"
+                android:gravity="center"
+                android:inputType="textShortMessage"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/elements_color_tint"
+                android:textColorHint="@color/edit_text_hint_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_category"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/estedad_light"
+        android:text="افزودن"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_time_hint" />
+
+    <Button
+        android:id="@+id/discard_changes"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:fontFamily="@font/estedad_light"
+        android:text="منصرف شدم"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/submit_category"
+        app:layout_constraintStart_toEndOf="@+id/submit_category"
+        app:layout_constraintTop_toTopOf="@+id/submit_category" />
+
+    <TextView
+        android:id="@+id/current_question_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/estedad_light"
+        android:text="@string/current_question_number"
+        android:textColor="@color/elements_color_tint"
+        app:layout_constraintEnd_toEndOf="@+id/category_specifics"
+        app:layout_constraintStart_toStartOf="@+id/category_specifics"
+        app:layout_constraintTop_toBottomOf="@+id/category_specifics" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

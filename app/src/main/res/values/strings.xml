@@ -1,0 +1,176 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">پاسخنامه (آلفا)</string>
+    <string name="time">%d:%d</string>
+    <string name="date">%s:%s %d/%s/%s</string>
+    <string name="num">%d</string>
+    <string name="category_score_ui">%s - %s</string>
+    <string name="category_score_str" tools:ignore="TypographyDashes">%s -- %s</string>
+    <string name="score_not_minus">٪%.2f</string>
+    <string name="score_not_minus_ui">%.2f٪</string>
+    <string name="score_minus">٪%.2f- </string>
+    <string name="score_minus_ui">%.2f٪- </string>
+    <string name="exam_end">آزمون خود را تصحیح کنید.</string>
+    <string name="exam_end_c_a">کلید آزمون را وارد کنید.</string>
+    <string name="result_score_with_educational_state">%s\t\t\t\t%s</string>
+    <string name="result_score_with_educational_state_categories">%s\t\t\t\t%s</string>
+    <!-- Generation 1 Static Courses - History - -->
+    <string name="select_course_title">درس مورد نظر را انتخاب کنید:</string>
+    <string name="math">ریاضی</string>
+    <string name="empirical_sciences">علوم تجربی</string>
+    <string name="persian_literature">ادبیات فارسی</string>
+    <string name="arabic">عربی</string>
+    <string name="english">انگلیسی</string>
+    <string name="complete_exam">آزمون جامع</string>
+    <string name="social_studies">مطالعات اجتماعی</string>
+    <string name="religious">دینی</string>
+    <string name="select_something">انتخاب کنید</string>
+    <string name="questions_number">تعداد سؤالات:</string>
+    <string name="course_name">نام آزمون:</string>
+    <string name="the_end_of_questions">اتمام آزمون</string>
+    <string name="exam_name">آزمون %s</string>
+    <string name="start_exam">شروع آزمون</string>
+    <string name="enter_to_exam_room">ورود به اتاق آزمون</string>
+    <string name="exam_time_label">مدت آزمون:</string>
+    <string name="answer_sheet_header_text">پاسخ برگ</string>
+    <string name="exam_time_format">ثانیه:دقیقه</string>
+    <string name="choice_1">۱</string>
+    <string name="choice_2">۲</string>
+    <string name="choice_3">۳</string>
+    <string name="choice_4">۴</string>
+    <string name="share_answersheet">اشتراک گذاری آزمون</string>
+    <string name="share_worksheet">اشتراک گذاری کارنامه</string>
+    <string name="worksheet_header1">-- کارنامه آزمون --\n</string>
+    <string name="worksheet_header2">-- آزمون --\n</string>
+    <string name="worksheet_body" tools:ignore="TypographyDashes">
+        نام آزمون: %s\n
+        تعداد سؤالات: %d\n
+        زمان آزمون: %s\n
+        مدت آزمون: %s\n
+        توضیحات: %s\n
+    </string>
+    <string name="worksheet_exam_score" tools:ignore="TypographyDashes">
+        \n
+        نمره نهایی (%s): %s\n
+        وضعیت تحصیلی: %s\n
+    </string>
+    <string name="worksheet_average_of_thinking_time">
+        \n
+        میانگین زمان حل تست: %s ثانیه\n
+    </string>
+    <string name="worksheet_category_tip">\n
+        سؤالات دارای علامت «*»، متعلق به دسته مشخصی می باشند.\n</string>
+    <string name="worksheet_correct_answers_tip">\n
+    ستون %d: پاسخ شما\nستون %d: پاسخ صحیح\n</string>
+    <string name="worksheet_answersheet_header" tools:ignore="TypographyDashes">
+        \n
+        حرف «ن» = نزده\n
+        \n
+        -- پاسخنامه --\n
+    </string>
+    <string name="worksheet_question_non_white_manual_correction">
+        %d. %d  %s\n
+    </string>
+    <string name="worksheet_question_non_white_correct_answers_correction">
+        %d. %d  %d  %s\n
+    </string>
+    <string name="worksheet_question_non_white2">
+        %d. %d\n
+    </string>
+    <string name="worksheet_question_white_manual_correction">
+        %d. ن\n
+    </string>
+    <string name="worksheet_question_white_correct_answers_correction">
+        %d. ن  %d\n
+    </string>
+    <string name="current_question_number">اندیس سؤال فعلی: %d</string>
+    <string name="time_of_thinking">%d ثانیه</string>
+    <string name="time_of_thinking_m">م %d ثانیه</string>
+    <string name="time_of_thinking_m2">م ک\n%d ثانیه</string>
+    <string name="add_explain_worksheet">برای کارنامه آزمون خود، توضیحی بیفزایید.\n(حداقل ۳ حرف)</string>
+    <string name="add_explain_answersheet">برای آزمون خود، توضیحی بیفزایید.\n(حداقل ۳ حرف)</string>
+    <string name="exam_started_time">%s</string>
+    <string name="exam_name_text">آزمون %s</string>
+    <string name="enter_exam_questions">سؤالات آزمون را وارد کنید.</string>
+    <string name="edit_category_title">ویرایش دسته %s</string>
+    <string name="edit_exam_features_title">ویرایش آزمون %s</string>
+    <string name="edit_category_name">یک نام جدید برای دسته «%s» انتخاب کنید:</string>
+    <string name="delete_category_elements_text">حذف چند سؤال از دسته %s</string>
+    <string name="add_category_elements_text">افزودن چند سؤال به دسته %s</string>
+    <string name="delete_category_elements_helper">می توانید تا حداکثر %d سؤال را از این دسته، از هر طرف حذف کنید.\n(پایین و بالا، منظور بالای دسته و پایین دسته می باشد.)</string>
+    <string name="add_category_elements_helper">می توانید به این دسته، تعدادی سؤال، از هر طرف اضافه کنید.\n(پایین و بالا، منظور بالای دسته و پایین دسته می باشد.)</string>
+    <string name="searching_for_exam">در حال جستجوی آزمون مورد نظر…</string>
+    <string name="backup_name_text">پشتیبان %s</string>
+    <string name="file_size_text">اندازه: %s</string>
+    <string name="backing_up">در حال پشتیبان گیری…</string>
+    <string name="folder_name">پوشه %s</string>
+    <string name="loading_text">در حـال جستجو…\nلطفاً شکیبا باشید.</string>
+    <string name="loading_text_2">در حـال افزودن…\nلطفاً صبور باشید.</string>
+    <string name="loading_text_3">در حـال حذف…\nلطفاً صبور باشید.</string>
+    <string name="folder_on_search">جستجو در پوشه:\n%s</string>
+    <string name="list_sort_by_text">مرتـب سـازی بر اسـاس %s</string>
+    <string name="questions_none_answer">تعداد سؤالات نزده: %s %s</string>
+    <string name="questions_wrong_answer">تعداد پاسخ های نادرست: %s %s</string>
+    <string name="questions_correct_answer">تعداد پاسخ های درست: %s %s</string>
+    <string name="exam_result_title">نتیجه آزمون %s</string>
+    <string name="current_version_code">نسخه فعلی: %s</string>
+    <string name="new_version_code">نسخه جدید: %s</string>
+    <string name="worksheet_bookmarks_tip">
+		نشانه «%s» = «%s»\n
+	</string>
+    <string name="help_chart_using_text">نمودار پیشرفت شما در «%s»</string>
+    <string name="take_problem_screenshot_hint">برای بیان بهتر، عکسی برای ما بگیرید!</string>
+    <string name="exam_file_current_page_number">%d از %d</string>
+    <string name="rename_document_text">نام جدید سند %s را وارد کنید:</string>
+    <string name="draft_drawing_hint">اینجا، روی صفحه بکشید.</string>
+    <string name="pdf_loading_error">سند آزمون بارگذاری نشد!\n\nممکن است سند خراب\nو یا از بین رفته باشد.</string>
+    <string name="category_questions_count">تعداد سؤال: %d</string>
+    <string name="new_course_name_helper">نام جدیدی برای «%s» بنویسید:\n(حداقل 3 حرف)</string>
+    <string name="update_available_text">بروزرسانی جدید (%s)</string>
+    <string name="welcome_title">خـــوش آمـــدید! 🎉🎉</string>
+    <string name="recent_activities_title">فعالیت اخیر</string>
+    <string name="recent_activities_empty_text">تاکنون فعالیتی نداشته اید!</string>
+    <string name="activity_exam_created">شما آزمون %s را ایجاد کردید.</string>
+    <string name="activity_exam_started">آزمون %s را با %d تست، شروع کردید.</string>
+    <string name="activity_exam_restarted">آزمون %s را ادامه دادید.</string>
+    <string name="activity_solved_tests">شما %d تست، از آزمون %s زدید.</string>
+    <string name="activity_exam_finished">آزمون %s را به پایان رساندید.</string>
+    <string name="activity_exam_correction_ended">تصحیح آزمون %s را به طور کامل انجام دادید.</string>
+    <string name="activity_exam_suspended">آزمون %s، توسط شما معلق شد.</string>
+    <string name="exams_list_empty">در این دسته، آزمونی وجود ندارد!</string>
+    <string name="resume_running_exam">ادامه دادن</string>
+    <string name="exam_loading">بارگذاری…</string>
+    <string name="started_exams_title">آزمون درحال اجرا</string>
+    <string name="suspended_exams_title">آزمون معلق شده</string>
+    <string name="finished_exams_title">آزمون تمام شده</string>
+    <string name="creating_exams_title">آزمون ساخته نشده</string>
+    <string name="correcting_exams_title">آزمون تصحیح نشده</string>
+    <string name="restart_exam">شروع مجدد</string>
+    <string name="create_exam">سـاخـت</string>
+    <string name="correct_exam">تصحیح</string>
+    <string name="shortcut_exam_loading_text">در حال بارگذاری\nآزمون %s…</string>
+    <string name="favorite_exams_widget_disc">آزمون های مورد علاقه خود را مشاهده و اجرا کنید.</string>
+    <string name="compact_view_date">%s:%s\n%s/%s</string>
+    <string name="exam_category_name">در دسته %s</string>
+    <string name="favorite_exams_title">آزمون های مورد علاقه</string>
+    <string name="exam_start_notifications">اعلان های شروع آزمون</string>
+    <string name="privacy_and_security">امنیت و حریم خصوصی</string>
+    <string name="exam_page_wallpaper">پس زمینه صفحه آزمون</string>
+    <string name="adjust_visual_effects">تنظیم جلوه های ویژه</string>
+    <string name="page_under_maintenance">This page is under maintenance</string>
+    <string name="biometric_enter">ورود بـیومـتـریـک</string>
+    <string name="select_thing_title">انتخاب %s</string>
+    <string name="loading_pdf_document">در حال بارگذاری سند…</string>
+    <string name="exam_empty_questions_list">سؤالی برای این آزمون وجود ندارد!</string>
+    <string name="new_exam">آزمون جدید</string>
+    <string name="select_exam_name">نام آزمون</string>
+    <string name="min_of_exam_time">حداقل زمان آزمون: 05:00</string>
+    <string name="default_time">--:--</string>
+    <string name="set_exam_questions_helper">سؤالات آزمون را تعیین کنید</string>
+    <string name="page_counter_text">%d از %d</string>
+    <string name="google_ads_baner_unit_id">ca-app-pub-7209258028095500/7238655133</string>
+    <string name="tapsell_plus_id">kojocfjtdlhgodhphgqmfbcrdttqoqnftacbnhckqrscftkosgiboqbegrbnpsdtigprbd</string>
+    <string name="tapsell_banner_zone_id">64086217972aed14bd5e3154</string>
+    <string name="adivery_app_id">8cd0ec93-a108-439e-a3b7-4e80512cbe05</string>
+    <string name="adivery_interstitial_ad_id">de8d5c6d-1ba5-408e-b393-9ffe2ef5db9f</string>
+    <string name="prepairing">در حال آماده سازی...</string>
+</resources>

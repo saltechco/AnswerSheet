@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_margin="5dp"
+	android:layoutDirection="ltr"
+	app:cardBackgroundColor="@color/element_background_color"
+	app:cardCornerRadius="10dp"
+	app:cardElevation="5dp"
+	app:cardPreventCornerOverlap="true"
+	app:contentPadding="8dp">
+
+	<LinearLayout
+		android:id="@+id/toolbox_items_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal">
+
+
+		<ImageButton
+			android:id="@+id/select_drawing_mode"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_marginEnd="5dp"
+			android:layout_marginRight="5dp"
+			android:background="@null"
+			android:padding="11dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/path_drawing"
+			app:tint="@color/elements_color_tint" />
+
+		<ImageButton
+			android:id="@+id/change_pen_color"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_marginEnd="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_weight="1"
+			android:background="@null"
+			android:padding="12dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/draft_pen_color"
+			app:tint="@color/elements_color_tint" />
+
+		<ImageButton
+			android:id="@+id/change_pen_stroke"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_marginEnd="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_weight="1"
+			android:background="@null"
+			android:padding="12dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/draft_pen_stroke"
+			app:tint="@color/elements_color_tint" />
+
+		<ImageButton
+			android:id="@+id/delete_pen_strokes"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:background="@null"
+			android:padding="11dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/draft_pen_eraser"
+			app:tint="@color/elements_color_tint" />
+
+		<ImageButton
+			android:id="@+id/change_exam_file_visibility"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_marginStart="5dp"
+			android:layout_marginLeft="5dp"
+			android:layout_weight="1"
+			android:background="@null"
+			android:src="@drawable/exam_file_visibility"
+			android:visibility="gone"
+			app:tint="@color/elements_color_tint" />
+
+		<ImageButton
+			android:id="@+id/show_draft_options"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_marginStart="5dp"
+			android:layout_marginLeft="5dp"
+			android:layout_weight="1"
+			android:background="@null"
+			android:src="@drawable/more_app_options"
+			android:visibility="gone"
+			app:tint="@color/elements_color_tint" />
+
+	</LinearLayout>
+
+</androidx.cardview.widget.CardView>

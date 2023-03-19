@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<integer name="exams_view_span_count">3</integer>
+	<dimen name="view_width_length">200dp</dimen>
+	<dimen name="draft_screen_height">300dp</dimen>
+</resources>

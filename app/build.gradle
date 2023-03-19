@@ -1,0 +1,81 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'ir.saltech.answersheet'
+    compileSdk 33
+    buildToolsVersion '33.0.1'
+    defaultConfig {
+        applicationId "ir.saltech.answersheet.alpha"
+        minSdk 21
+        targetSdk 33
+        versionCode 310022200
+        // Ver. Structure: Gen.Maj.Min.Build
+        versionName "3.05.28.22104(alpha)"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
+        multiDexEnabled true
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            multiDexEnabled true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    aaptOptions{
+        noCompress "tflite"
+        noCompress "lite"
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.github.Dimezis:BlurView:version-2.0.2'
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.github.lecho:hellocharts-android:1.5.8'
+    // Deprecated PDF Viewer library:
+    //implementation 'com.github.afreakyelf:Pdf-Viewer:v1.0.7'
+    implementation 'com.github.YvesCheung:RollingText:1.2.0'
+    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'io.github.nvest-solutions:html-to-pdf-convertor:1.0.0'
+    implementation 'com.airbnb.android:lottie:6.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.biometric:biometric:1.1.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
+    implementation 'net.lingala.zip4j:zip4j:2.11.5'
+    implementation 'jp.wasabeef:blurry:4.0.1'
+    implementation 'com.github.infotech-group:CanvasView:1.0.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.daasuu:CountAnimationTextView:0.1.2'
+    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'com.adivery:sdk:4.5.12'
+    implementation 'ir.tapsell.plus:tapsell-plus-sdk-android:2.1.8'
+    implementation 'com.mikhaellopez:circularprogressbar:3.1.0'
+    //noinspection GradleDependency
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    //noinspection GradleDependency
+    implementation 'org.conscrypt:conscrypt-android:2.2.1'
+    implementation 'org.tensorflow:tensorflow-lite:2.11.0'
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

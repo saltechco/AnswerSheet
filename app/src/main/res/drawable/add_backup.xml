@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:drawable="@drawable/add_object" android:bottom="32dp" android:right="32dp" />
+	<item android:top="5dp" android:left="6dp" android:drawable="@drawable/app_data_backup"  />
+</layer-list>

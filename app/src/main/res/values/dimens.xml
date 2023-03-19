@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_press_scale">0.8</dimen>
+    <integer name="exams_view_span_count">2</integer>
+    <dimen name="view_width_length">100dp</dimen>
+    <dimen name="status_bar_margin">32dp</dimen>
+    <dimen name="draft_screen_height">200dp</dimen>
+</resources>

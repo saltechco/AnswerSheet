@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/backup_card"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/element_background_color"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="3dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/backup_image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="28dp"
+            android:scaleType="fitXY"
+            android:scaleX="1.13"
+            android:scaleY="1.13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/saved_backup"
+            app:tint="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/backup_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/estedad_light"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="حسابان"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backup_image" />
+
+        <LinearLayout
+            android:id="@+id/quick_control_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/backup_name">
+
+            <LinearLayout
+                android:id="@+id/backup_modify_date_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/row_button_bg"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp">
+
+                <TextView
+                    android:id="@+id/backup_modified_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/estedad_light"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="99/09/12"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:padding="2.5dp"
+                    android:src="@drawable/search_by_start_time"
+                    app:tint="@color/colorAccent" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/quick_control_layout">
+
+            <ImageButton
+                android:id="@+id/backup_delete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/tiny_button_bg"
+                android:backgroundTint="@color/error"
+                android:backgroundTintMode="src_in"
+                android:padding="6dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/delete_selected_choice"
+                android:visibility="visible"
+                app:tint="@color/error" />
+
+            <ImageButton
+                android:id="@+id/backup_restore"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/tiny_button_bg"
+                android:backgroundTint="#2962FF"
+                android:backgroundTintMode="src_in"
+                android:padding="7.25dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/restore_backup"
+                android:visibility="visible"
+                app:tint="#2962FF" />
+
+            <ImageButton
+                android:id="@+id/backup_partitions"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/tiny_button_bg"
+                android:backgroundTint="#6200EA"
+                android:backgroundTintMode="src_in"
+                android:padding="7.5dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/backup_partitions"
+                android:visibility="visible"
+                app:tint="#6200EA" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

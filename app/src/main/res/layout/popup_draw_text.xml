@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_margin="5dp"
+	android:layoutDirection="ltr"
+	app:cardBackgroundColor="@color/element_background_color"
+	app:cardCornerRadius="10dp"
+	app:cardElevation="10dp"
+	app:cardPreventCornerOverlap="true"
+	app:contentPadding="8dp">
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal">
+
+		<ImageButton
+			android:id="@+id/text_submit"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:layout_marginEnd="5dp"
+			android:layout_marginRight="5dp"
+			android:adjustViewBounds="true"
+			android:background="@null"
+			android:src="@drawable/close"
+			app:tint="@color/colorAccent" />
+
+		<EditText
+			android:id="@+id/draw_edit_text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:ems="8"
+			android:fontFamily="@font/estedad_light"
+			android:hint="متن خود را وارد کنید."
+			android:inputType="textShortMessage"
+			android:maxLength="250"
+			android:singleLine="true"
+			android:textColor="@color/elements_color_tint"
+			android:textColorHint="@color/edit_text_hint_color"
+			android:textSize="14sp" />
+
+		<EditText
+			android:id="@+id/draw_text_size"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="5dp"
+			android:layout_marginLeft="5dp"
+			android:ems="3"
+			android:fontFamily="@font/estedad_light"
+			android:gravity="center"
+			android:hint="سایز"
+			android:inputType="number"
+			android:maxLength="3"
+			android:singleLine="true"
+			android:textColor="@color/elements_color_tint"
+			android:textColorHint="@color/edit_text_hint_color"
+			android:textSize="14sp" />
+
+	</LinearLayout>
+</androidx.cardview.widget.CardView>

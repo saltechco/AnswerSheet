@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/t_parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:layoutDirection="ltr"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:id="@+id/category_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/category_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/estedad_light"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingBottom="8dp"
+            android:scrollbars="none"
+            android:singleLine="true"
+            android:text="@string/category_score_ui"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/time_remaining_layout_c"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jump_to_question_layout">
+
+            <TextView
+                android:id="@+id/time_remaining_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/estedad_light"
+                android:gravity="center"
+                android:text="12:34"
+                android:textColor="@color/elements_color_tint"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/time_remaining_image_c"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="2dp"
+                android:padding="3dp"
+                android:src="@drawable/exam_time" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/edit_category"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@null"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/category_edit"
+                app:layout_constraintBottom_toBottomOf="@+id/category_title"
+                app:layout_constraintEnd_toStartOf="@+id/category_title"
+                app:layout_constraintTop_toTopOf="@+id/category_title" />
+
+            <TextView
+                android:id="@+id/category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/estedad_light"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxWidth="200dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:scrollbars="none"
+                android:singleLine="true"
+                android:text="فارسی"
+                android:textColor="@color/elements_color_tint"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/time_of_thinking_layout_m"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/time_of_thinking_m"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="5"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/estedad_light"
+                android:gravity="right|center_vertical"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollbars="none"
+                android:text="@string/time_of_thinking"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1.7"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/chronometer"
+                app:tint="@color/colorAccent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--    <eightbitlab.com.blurview.BlurView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:layout_weight="0.25"-->
+    <!--        android:background="@drawable/card_background_solid"-->
+    <!--        android:visibility="gone">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:padding="16dp">-->
+
+    <!--            <androidx.recyclerview.widget.RecyclerView-->
+    <!--                android:id="@+id/bookmarks_view"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--                app:layout_constraintRight_toRightOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--    </eightbitlab.com.blurview.BlurView>-->
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/question_parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:background="@drawable/card_background_solid">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/time_of_thinking_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="3dp"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/row_button_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:visibility="gone"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/time_of_thinking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/estedad_light"
+                        android:gravity="center"
+                        android:text="@string/time_of_thinking"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:src="@drawable/chronometer"
+                        app:tint="@color/colorAccent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/question_panel_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/question_number"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="0.5"
+                        android:clickable="false"
+                        android:ellipsize="marquee"
+                        android:fadeScrollbars="true"
+                        android:fontFamily="@font/estedad_light"
+                        android:gravity="center|end"
+                        android:includeFontPadding="false"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textColor="@color/elements_color_tint"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                    <CheckBox
+                        android:id="@+id/is_correct_choice"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/choices_group"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:animateLayoutChanges="true"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:layoutDirection="ltr"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <Button
+                            android:id="@+id/choice_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_default_material"
+                            android:elevation="2.2dp"
+                            android:fontFamily="@font/estedad_light"
+                            android:gravity="center"
+                            android:paddingBottom="13dp"
+                            android:text="@string/choice_1"
+                            android:textAlignment="center"
+                            android:textColor="@color/elements_color_tint"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <Button
+                            android:id="@+id/choice_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_default_material"
+                            android:elevation="2.2dp"
+                            android:fontFamily="@font/estedad_light"
+                            android:gravity="center"
+                            android:paddingBottom="13dp"
+                            android:text="@string/choice_2"
+                            android:textAlignment="center"
+                            android:textColor="@color/elements_color_tint"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <Button
+                            android:id="@+id/choice_3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_default_material"
+                            android:elevation="2.2dp"
+                            android:fontFamily="@font/estedad_light"
+                            android:gravity="center"
+                            android:paddingBottom="13dp"
+                            android:text="@string/choice_3"
+                            android:textAlignment="center"
+                            android:textColor="@color/elements_color_tint"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/choice_4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_default_material"
+                            android:elevation="2.2dp"
+                            android:fontFamily="@font/estedad_light"
+                            android:freezesText="false"
+                            android:paddingBottom="13dp"
+                            android:text="@string/choice_4"
+                            android:textAlignment="center"
+                            android:textColor="@color/elements_color_tint"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/focus_question"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/add_category_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/add_new_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/search_selected_choice_bg"
+                android:drawableEnd="@drawable/add_category2"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/estedad_light"
+                android:foregroundTint="@color/elements_color_tint_rev"
+                android:includeFontPadding="false"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:scaleX="0.9"
+                android:scaleY="0.9"
+                android:text="افزودن دسته"
+                android:textColor="@color/elements_color_tint_rev"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/disable_question"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/acrylic_view_background"
+                android:clickable="true"
+                android:contentDescription="Disable Button"
+                android:focusable="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </eightbitlab.com.blurview.BlurView>
+
+</LinearLayout>

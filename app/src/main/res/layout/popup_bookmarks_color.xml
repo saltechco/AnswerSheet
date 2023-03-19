@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/bookmark_colors_card"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_margin="5dp"
+	android:layoutDirection="ltr"
+	app:cardBackgroundColor="@color/element_background_color"
+	app:cardCornerRadius="10dp"
+	app:cardElevation="10dp"
+	app:cardPreventCornerOverlap="true"
+	app:contentPadding="5dp">
+
+	<ScrollView
+		android:layout_width="wrap_content"
+		android:layout_height="175dp"
+		android:clipToPadding="true"
+		android:fadeScrollbars="true"
+		android:fillViewport="true"
+		android:isScrollContainer="true"
+		android:scrollbarSize="1dp"
+		android:scrollbarStyle="outsideOverlay"
+		android:verticalScrollbarPosition="left">
+
+		<LinearLayout
+			android:id="@+id/bookmark_colors"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+
+			<ImageButton
+				android:id="@+id/bookmark_color_r"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#dc3545"
+				tools:ignore="ContentDescription" />
+
+			<ImageButton
+				android:id="@+id/bookmark_color_o"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#fd7e14" />
+
+			<ImageButton
+				android:id="@+id/bookmark_color_y"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#ffc107" />
+
+			<ImageButton
+				android:id="@+id/bookmark_color_c"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#20c997" />
+
+			<ImageButton
+				android:id="@+id/bookmark_color_b"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#0d6efd" />
+
+			<ImageButton
+				android:id="@+id/bookmark_color_p"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#d63384" />
+
+			<ImageButton
+				android:id="@+id/bookmark_color_br"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#795548" />
+
+			<ImageButton
+				android:id="@+id/bookmark_color_g"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#6c757d" />
+
+			<ImageButton
+				android:id="@+id/bookmark_color_w"
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:layout_marginTop="5dp"
+				android:adjustViewBounds="true"
+				android:background="@null"
+				android:padding="5dp"
+				android:scaleType="fitCenter"
+				android:src="@drawable/bookmark_pin"
+				app:tint="#e0e0e0" />
+
+		</LinearLayout>
+
+	</ScrollView>
+</androidx.cardview.widget.CardView>

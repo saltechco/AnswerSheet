@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/content_paste"/>
+    <item android:drawable="@drawable/search_by_exam_correcting" android:gravity="bottom" android:top="11dp" android:left="9dp" android:right="8dp" android:bottom="7dp" />
+</layer-list>

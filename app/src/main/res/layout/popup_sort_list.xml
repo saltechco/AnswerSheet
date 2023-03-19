@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginEnd="10dp"
+	android:layout_marginRight="10dp"
+	android:background="@color/element_background_color"
+	android:layoutDirection="ltr"
+	app:cardCornerRadius="10dp"
+	app:cardElevation="10dp"
+	app:cardPreventCornerOverlap="true">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<Button
+			android:id="@+id/sort_by_date"
+			style="@style/Widget.AppCompat.Button.Borderless"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginLeft="8dp"
+			android:layout_marginTop="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginRight="8dp"
+			android:drawablePadding="-25dp"
+			android:fontFamily="@font/estedad_light"
+			android:paddingLeft="25dp"
+			android:singleLine="true"
+			android:text="بر اسـاس نـام"
+			android:textColor="@color/elements_color_tint"
+			android:textSize="15sp"
+			android:textStyle="bold" />
+
+		<View
+			android:id="@+id/divider"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:layout_marginStart="32dp"
+			android:layout_marginLeft="32dp"
+			android:layout_marginTop="5dp"
+			android:layout_marginEnd="32dp"
+			android:layout_marginRight="32dp"
+			android:layout_marginBottom="5dp"
+			android:background="?android:attr/listDivider" />
+
+		<Button
+			android:id="@+id/sort_by_size"
+			style="@style/Widget.AppCompat.Button.Borderless"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginLeft="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginRight="8dp"
+			android:layout_marginBottom="8dp"
+			android:drawablePadding="-25dp"
+			android:fontFamily="@font/estedad_light"
+			android:paddingLeft="25dp"
+			android:singleLine="true"
+			android:text="بر اسـاس اندازه"
+			android:textColor="@color/elements_color_tint"
+			android:textSize="15sp"
+			android:textStyle="bold" />
+
+	</LinearLayout>
+
+</androidx.cardview.widget.CardView>

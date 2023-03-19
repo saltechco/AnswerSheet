@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_margin="5dp"
+	android:layoutDirection="ltr"
+	app:cardBackgroundColor="@color/element_background_color"
+	app:cardCornerRadius="10dp"
+	app:cardElevation="10dp"
+	app:cardPreventCornerOverlap="true"
+	app:contentPadding="5dp">
+
+	<LinearLayout
+		android:id="@+id/drawing_options_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+
+		<ImageButton
+			android:id="@+id/undo_changes"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:adjustViewBounds="true"
+			android:background="@null"
+			android:padding="5dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/undo"
+			app:tint="@color/elements_color_tint"
+			tools:ignore="ContentDescription" />
+
+		<ImageButton
+			android:id="@+id/redo_changes"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:layout_marginStart="5dp"
+			android:layout_marginLeft="5dp"
+			android:adjustViewBounds="true"
+			android:background="@null"
+			android:padding="5dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/redo"
+			app:tint="@color/elements_color_tint" />
+
+		<ImageButton
+			android:id="@+id/save_draft"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:layout_marginStart="5dp"
+			android:layout_marginLeft="5dp"
+			android:adjustViewBounds="true"
+			android:background="@null"
+			android:padding="5dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/saved_backup"
+			app:tint="@color/elements_color_tint" />
+
+		<ImageButton
+			android:id="@+id/close_window"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:layout_marginStart="5dp"
+			android:layout_marginLeft="5dp"
+			android:layout_weight="1"
+			android:adjustViewBounds="true"
+			android:background="@null"
+			android:padding="5dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/close"
+			app:tint="@color/edu_level_bad" />
+
+	</LinearLayout>
+
+</androidx.cardview.widget.CardView>
