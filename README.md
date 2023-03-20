@@ -1,4 +1,4 @@
-# AnswerSheet <span style="color:darkred">exprimental usage</span>
+# AnswerSheet (exprimental usage)
 ### Answers are an ideal alternative to paper answers.
 Through program, you can simulate the feeling of a real exam .
 It has special features that are very similar to the real exam.
