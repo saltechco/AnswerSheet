@@ -1,0 +1,2 @@
+- name: Sms77.io SMS
+  uses: seven-io/github-action-sms@v1.0.0
