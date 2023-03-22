@@ -1,4 +1,0 @@
-- name: Sms77.io SMS
-  uses: seven-io/github-action-sms@v1.0.0
-- name: Gradle Dependency Submission
-  uses: mikepenz/gradle-dependency-submission@v0.8.5
