@@ -416,7 +416,6 @@ public class MainActivity extends AppCompatActivity implements ToggleButtonPartC
             }
         }
     }
-
     private void usingMLModel() {
         TensorModelLoader modelLoader = new TensorModelLoader();
         String val = "10";
