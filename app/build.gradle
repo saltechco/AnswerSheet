@@ -5,7 +5,6 @@ plugins {
 android {
     namespace 'ir.saltech.answersheet'
     compileSdk 33
-    buildToolsVersion '33.0.1'
     defaultConfig {
         applicationId "ir.saltech.answersheet.alpha"
         minSdk 21
