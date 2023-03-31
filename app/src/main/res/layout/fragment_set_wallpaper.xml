@@ -24,7 +24,7 @@
                 android:orientation="horizontal">
 
                 <View
-                    android:id="@+id/divider5"
+                    android:id="@+id/picture_background_divider"
                     android:layout_width="0dp"
                     android:layout_height="3dp"
                     android:layout_marginStart="13dp"
@@ -40,7 +40,7 @@
                     app:layout_constraintVertical_bias="0.55" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/picture_background_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -58,7 +58,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/picture_background_img"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="13dp"

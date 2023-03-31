@@ -572,7 +572,7 @@
                                     android:layout_height="match_parent">
 
                                     <ImageView
-                                        android:id="@+id/image5"
+                                        android:id="@+id/image512"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:layout_marginTop="8dp"
@@ -588,7 +588,7 @@
                                         app:tint="@color/colorAccent" />
 
                                     <TextView
-                                        android:id="@+id/textView29"
+                                        android:id="@+id/textView209"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
@@ -606,7 +606,7 @@
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/image5"
+                                        app:layout_constraintTop_toBottomOf="@+id/image512"
                                         app:layout_constraintVertical_bias="0.0" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
                             </androidx.cardview.widget.CardView>
@@ -697,7 +697,7 @@
                                     android:layout_height="match_parent">
 
                                     <ImageView
-                                        android:id="@+id/image5"
+                                        android:id="@+id/image9800"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:layout_marginTop="8dp"
@@ -713,7 +713,7 @@
                                         app:tint="@color/colorAccent" />
 
                                     <TextView
-                                        android:id="@+id/textView29"
+                                        android:id="@+id/textView2313"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
@@ -731,7 +731,7 @@
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/image5"
+                                        app:layout_constraintTop_toBottomOf="@id/image9800"
                                         app:layout_constraintVertical_bias="0.0" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
                             </androidx.cardview.widget.CardView>
@@ -756,7 +756,7 @@
                                     android:layout_height="match_parent">
 
                                     <ImageView
-                                        android:id="@+id/image6"
+                                        android:id="@+id/image600"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:layout_marginTop="8dp"
@@ -772,7 +772,7 @@
                                         app:tint="@color/colorAccent" />
 
                                     <TextView
-                                        android:id="@+id/textView30"
+                                        android:id="@+id/textView300"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
@@ -790,7 +790,7 @@
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/image6"
+                                        app:layout_constraintTop_toBottomOf="@+id/image600"
                                         app:layout_constraintVertical_bias="0.0" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
                             </androidx.cardview.widget.CardView>
@@ -1978,7 +1978,7 @@
                         app:layout_constraintTop_toTopOf="@+id/exam_time_layout">
 
                         <View
-                            android:id="@+id/box_boarder"
+                            android:id="@+id/box_boarder1"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginTop="13dp"
@@ -1989,7 +1989,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/box_title"
+                            android:id="@+id/box_title1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="30dp"
@@ -2001,7 +2001,7 @@
                             android:paddingEnd="8dp"
                             android:text="کرنومتر پاسخ"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/box_boarder"
+                            app:layout_constraintBottom_toTopOf="@+id/box_boarder1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.55"
                             app:layout_constraintStart_toStartOf="parent"
@@ -2020,10 +2020,10 @@
                             android:paddingTop="8dp"
                             android:paddingRight="8dp"
                             android:paddingBottom="8dp"
-                            app:layout_constraintBottom_toBottomOf="@id/box_boarder"
+                            app:layout_constraintBottom_toBottomOf="@id/box_boarder1"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/box_title">
+                            app:layout_constraintTop_toBottomOf="@id/box_title1">
 
                             <LinearLayout
                                 android:id="@+id/select_chronometer_enabled"
@@ -2290,7 +2290,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/imageView5"
+                            android:id="@+id/imageView500"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="3dp"
@@ -2315,7 +2315,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/select_question_randomly">
 
                         <View
-                            android:id="@+id/box_boarder"
+                            android:id="@+id/box_boarder2"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginTop="13dp"
@@ -2326,7 +2326,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/box_title"
+                            android:id="@+id/box_title2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="30dp"
@@ -2338,11 +2338,11 @@
                             android:paddingEnd="8dp"
                             android:text="دسته بندی سؤالات"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/box_boarder"
+                            app:layout_constraintBottom_toTopOf="@+id/box_boarder2"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/box_boarder" />
+                            app:layout_constraintTop_toTopOf="@+id/box_boarder2" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -2353,10 +2353,10 @@
                             android:layout_marginBottom="10dp"
                             android:animateLayoutChanges="true"
                             android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="@id/box_boarder"
+                            app:layout_constraintBottom_toBottomOf="@id/box_boarder2"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/box_title">
+                            app:layout_constraintTop_toBottomOf="@id/box_title2">
 
                             <LinearLayout
                                 android:id="@+id/select_category_enabled"
@@ -2375,7 +2375,7 @@
                                 android:paddingBottom="5dp">
 
                                 <TextView
-                                    android:id="@+id/textView6"
+                                    android:id="@+id/textView6100"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -2392,7 +2392,7 @@
                                     android:textStyle="bold" />
 
                                 <ImageView
-                                    android:id="@+id/imageView5"
+                                    android:id="@+id/imageView588"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
                                     android:layout_marginStart="3dp"
@@ -2421,7 +2421,7 @@
                                 android:visibility="gone">
 
                                 <TextView
-                                    android:id="@+id/textView5"
+                                    android:id="@+id/textView598"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -2438,7 +2438,7 @@
                                     android:textStyle="bold" />
 
                                 <ImageView
-                                    android:id="@+id/imageView5"
+                                    android:id="@+id/imageView5897"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
                                     android:layout_marginStart="3dp"
@@ -2467,7 +2467,7 @@
                                 android:visibility="gone">
 
                                 <TextView
-                                    android:id="@+id/textView5"
+                                    android:id="@+id/textView567"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -2484,7 +2484,7 @@
                                     android:textStyle="bold" />
 
                                 <ImageView
-                                    android:id="@+id/imageView5"
+                                    android:id="@+id/imageView5909"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
                                     android:layout_marginStart="3dp"
@@ -2705,7 +2705,7 @@
                             android:paddingBottom="5dp">
 
                             <TextView
-                                android:id="@+id/textView6"
+                                android:id="@+id/textView906"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -2722,7 +2722,7 @@
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:id="@+id/imageView5"
+                                android:id="@+id/imageView5878"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:layout_marginStart="3dp"
@@ -2749,7 +2749,7 @@
                             android:paddingBottom="5dp">
 
                             <TextView
-                                android:id="@+id/textView6"
+                                android:id="@+id/textView896"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -2766,7 +2766,7 @@
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:id="@+id/imageView5"
+                                android:id="@+id/imageView895"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:layout_marginStart="3dp"
@@ -2867,7 +2867,7 @@
                 app:layout_constraintTop_toBottomOf="@id/create_exam_title">
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textView590"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -2892,10 +2892,10 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/divider"
-                    app:layout_constraintBottom_toBottomOf="@id/textView5"
+                    app:layout_constraintBottom_toBottomOf="@id/textView590"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/textView5"
-                    app:layout_constraintTop_toTopOf="@id/textView5"
+                    app:layout_constraintRight_toLeftOf="@id/textView590"
+                    app:layout_constraintTop_toTopOf="@id/textView590"
                     app:layout_constraintVertical_bias="0.55" />
 
                 <com.facebook.shimmer.ShimmerFrameLayout
@@ -4037,7 +4037,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/back_to_main_view_layout"
+                    android:id="@id/back_to_main_view_layout"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginTop="20dp"
@@ -4076,7 +4076,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/suspended_exams_card"
+                        android:id="@+id/docs"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="4dp"
@@ -4095,7 +4095,7 @@
                             android:layout_height="match_parent">
 
                             <ImageView
-                                android:id="@+id/image3"
+                                android:id="@+id/image300"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="8dp"
@@ -4111,7 +4111,7 @@
                                 app:tint="@color/colorAccent" />
 
                             <TextView
-                                android:id="@+id/textView19"
+                                android:id="@+id/textView190"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -4129,13 +4129,13 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/image3"
+                                app:layout_constraintTop_toBottomOf="@+id/image300"
                                 app:layout_constraintVertical_bias="0.0" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/finished_exams_card"
+                        android:id="@+id/exam_names_book"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="4dp"
@@ -4154,7 +4154,7 @@
                             android:layout_height="match_parent">
 
                             <ImageView
-                                android:id="@+id/image4"
+                                android:id="@+id/image400"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="8dp"
@@ -4170,7 +4170,7 @@
                                 app:tint="@color/colorAccent" />
 
                             <TextView
-                                android:id="@+id/textView28"
+                                android:id="@+id/textView280"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -4201,7 +4201,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/creating_exams_card"
+                        android:id="@+id/bookmarks_list_view"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="4dp"
@@ -4229,6 +4229,7 @@
                                 android:scaleType="fitXY"
                                 android:scaleX="0.75"
                                 android:scaleY="0.75"
+                                
                                 android:src="@drawable/bookmark_pins"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -4260,7 +4261,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/correcting_exams_card"
+                        android:id="@+id/education_progresses"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="4dp"
@@ -4279,7 +4280,7 @@
                             android:layout_height="match_parent">
 
                             <ImageView
-                                android:id="@+id/image6"
+                                android:id="@+id/image60"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="8dp"
@@ -4295,7 +4296,7 @@
                                 app:tint="@color/colorAccent" />
 
                             <TextView
-                                android:id="@+id/textView30"
+                                android:id="@+id/textView390"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -4310,11 +4311,10 @@
                                 android:textColor="@color/colorAccent"
                                 android:textSize="15sp"
                                 android:textStyle="bold"
-
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/image6"
+                                app:layout_constraintTop_toBottomOf="@+id/image60"
                                 app:layout_constraintVertical_bias="0.0" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
