@@ -1,4 +1,6 @@
-# AnswerSheet			![Java](https://img.shields.io/static/v1?label=Java&message=1.8&color=important)
+# AnswerSheet			![Java](https://img.shields.io/static/v1?label=Platform&message=Android&color=green)  ![Java](https://img.shields.io/static/v1?label=Java&message=1.8&color=important)
+###### Made by SalTech
+
 ### Answers are an ideal alternative to paper answers.
 Through program, you can simulate the feeling of a real exam .
 It has special features that are very similar to the real exam.
