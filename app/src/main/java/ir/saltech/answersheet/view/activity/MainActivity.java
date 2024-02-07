@@ -2184,7 +2184,7 @@ public class MainActivity extends AppCompatActivity implements ToggleButtonPartC
     }
 
     private void setDividerButtonsClicks() {
-        collapseExamTimeBar.initLayout();
+        //collapseExamTimeBar.initLayout(); // TODO: For last build time
         collapseExamTimeBar.setOnClickListener(this::setControlPanelCollapseBar);
         collapseExamHeader.setOnClickListener(this::setControlPanelCollapseBar);
         collapseDraftView.setOnClickListener(v -> setDefaultCollapseBar(v, examDraftLayout, CollapseBarMode.Fullscreen, null));
