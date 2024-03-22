@@ -54,7 +54,7 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'io.github.nvest-solutions:html-to-pdf-convertor:1.0.0'
-    implementation 'com.airbnb.android:lottie:6.3.0'
+    implementation 'com.airbnb.android:lottie:6.4.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.biometric:biometric:1.1.0'
     implementation 'com.google.code.gson:gson:2.10.1'
