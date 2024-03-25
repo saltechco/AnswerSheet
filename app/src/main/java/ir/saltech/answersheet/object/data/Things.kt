@@ -1,44 +1,35 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import android.util.Log;
+import android.util.Log
 
-import androidx.annotation.NonNull;
+open class Things {
+    private val things: MutableList<Thing> = ArrayList()
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Things {
-    private final List<Thing> things;
-
-    public Things() {
-        things = new ArrayList<>();
-    }
-
-    protected List<Thing> convertToThings(@NonNull List target) {
-        Log.i("TAG", "TAJ " + target.size());
-        for (int i = 0; i < target.size() && target.size() != 0; i++) {
-            addThing((Thing) target.get(i));
+    protected fun convertToThings(target: List<*>): List<Thing> {
+        Log.i("TAG", "TAJ " + target.size)
+        var i = 0
+        while (i < target.size && target.size != 0) {
+            addThing(target[i] as Thing)
+            i++
         }
-        return things;
+        return things
     }
 
-    public void addThing(Thing asThing) {
-        things.add(asThing);
+    fun addThing(asThing: Thing) {
+        things.add(asThing)
     }
 
-    public void removeThing(int index) {
-        things.remove(index);
+    fun removeThing(index: Int) {
+        things.removeAt(index)
     }
 
-    public void clearList() {
-        things.clear();
+    open fun clearList() {
+        things.clear()
     }
 
-    @NonNull
-    @Override
-    public String toString() {
+    override fun toString(): String {
         return "Things{" +
                 "things=" + things +
-                '}';
+                '}'
     }
 }

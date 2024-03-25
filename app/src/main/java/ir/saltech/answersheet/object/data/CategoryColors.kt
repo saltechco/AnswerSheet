@@ -1,34 +1,27 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import androidx.annotation.NonNull;
+class CategoryColors {
+    private var categoryColors: MutableList<CategoryColor>
 
-import java.util.ArrayList;
-import java.util.List;
+    init {
+        categoryColors = ArrayList()
+    }
 
-public class CategoryColors {
-	private List<CategoryColor> categoryColors;
+    fun getCategoryColors(): List<CategoryColor> {
+        return categoryColors
+    }
 
-	public CategoryColors() {
-		categoryColors = new ArrayList<>();
-	}
+    fun setCategoryColors(categoryColors: MutableList<CategoryColor>) {
+        this.categoryColors = categoryColors
+    }
 
-	public List<CategoryColor> getCategoryColors() {
-		return categoryColors;
-	}
+    fun addCategoryColor(q: CategoryColor) {
+        categoryColors.add(q)
+    }
 
-	public void setCategoryColors(List<CategoryColor> categoryColors) {
-		this.categoryColors = categoryColors;
-	}
-
-	public void addCategoryColor(CategoryColor q) {
-		categoryColors.add(q);
-	}
-
-	@NonNull
-	@Override
-	public String toString() {
-		return "CategoryColors{" +
-				"categoryColors=" + categoryColors +
-				'}';
-	}
+    override fun toString(): String {
+        return "CategoryColors{" +
+                "categoryColors=" + categoryColors +
+                '}'
+    }
 }

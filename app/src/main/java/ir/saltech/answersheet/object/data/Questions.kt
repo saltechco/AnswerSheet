@@ -1,57 +1,33 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import androidx.annotation.NonNull;
+class Questions : Things {
+    var questions: MutableList<Question>? = null
+    var categories: MutableList<Category>
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Questions extends Things {
-    private List<Question> questions;
-    private List<Category> categories;
-    public Questions(List<Question> questions) {
+    constructor(questions: MutableList<Question>?) {
         if (questions != null) {
-            this.questions = questions;
+            this.questions = questions
         } else {
-            this.questions = new ArrayList<>();
+            this.questions = ArrayList()
         }
-        categories = new ArrayList<>();
+        categories = ArrayList()
     }
 
-    public Questions() {
-        questions = new ArrayList<>();
-        categories = new ArrayList<>();
+    constructor() {
+        questions = ArrayList()
+        categories = ArrayList()
     }
 
-    public List<Thing> getQuestionThings() {
-        return super.convertToThings(questions);
-    }
+    val questionThings: List<Thing?>?
+        get() = super.convertToThings(questions!!)
 
-    public List<Thing> getCategoryThings() {
-        return super.convertToThings(categories);
-    }
+    val categoryThings: List<Thing?>?
+        get() = super.convertToThings(categories)
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
+    override fun toString(): String {
         return "Questions{" +
                 "answerSheet=" + questions +
                 ", categories=" + categories +
-                '}';
+                '}'
     }
 }

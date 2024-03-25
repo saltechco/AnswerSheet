@@ -1,54 +1,51 @@
-package ir.saltech.answersheet.view.container;
+package ir.saltech.answersheet.view.container
 
-import android.annotation.SuppressLint;
-import android.content.Context;
+import android.annotation.SuppressLint
+import android.content.Context
+import ir.saltech.answersheet.R
 
-import androidx.annotation.NonNull;
+class Toast {
+    private val context: Context
+    private val text: String
+    private val duration: Long
+    private var imageResId = 0
 
-import ir.saltech.answersheet.R;
+    @SuppressLint("CommitPrefEdits")
+    private constructor(context: Context, text: String, imageResId: Int, duration: Long) {
+        this.text = text
+        this.imageResId = imageResId
+        this.duration = duration
+        this.context = context
+    }
 
-public class Toast {
-	public static final int WARNING_SIGN = R.drawable.warning;
-	public static final long LENGTH_SHORT = 3000;
-	public static final long LENGTH_LONG = 5000;
-	private final Context context;
-	private final String text;
-	private final long duration;
-	private int imageResId;
+    @SuppressLint("CommitPrefEdits")
+    private constructor(context: Context, text: String, duration: Long) {
+        this.text = text
+        this.duration = duration
+        this.context = context
+    }
 
-	@SuppressLint("CommitPrefEdits")
-	private Toast(Context context, String text, int imageResId, long duration) {
-		this.text = text;
-		this.imageResId = imageResId;
-		this.duration = duration;
-		this.context = context;
-	}
+    @SuppressLint("UseCompatLoadingForDrawables")
+    fun show() {
+        val toast = MaterialTextToast(context)
+        toast.setText(text)
+        if (imageResId != 0) {
+            toast.setIcon(context.resources.getDrawable(imageResId))
+        }
+        toast.duration = duration
+        toast.showToast()
+    }
 
-	@SuppressLint("CommitPrefEdits")
-	private Toast(Context context, String text, long duration) {
-		this.text = text;
-		this.duration = duration;
-		this.context = context;
-	}
+    companion object {
+        val WARNING_SIGN: Int = R.drawable.warning
+        const val LENGTH_SHORT: Long = 3000
+        const val LENGTH_LONG: Long = 5000
+        fun makeText(context: Context, text: String, duration: Long): Toast {
+            return Toast(context, text, duration)
+        }
 
-	@NonNull
-	public static Toast makeText(@NonNull Context context, @NonNull String text, long duration) {
-		return new Toast(context, text, duration);
-	}
-
-	@NonNull
-	public static Toast makeText(@NonNull Context context, @NonNull String text, int imageResId, long duration) {
-		return new Toast(context, text, imageResId, duration);
-	}
-
-	@SuppressLint("UseCompatLoadingForDrawables")
-	public void show() {
-		MaterialTextToast toast = new MaterialTextToast(context);
-		toast.setText(text);
-		if (imageResId != 0) {
-			toast.setIcon(context.getResources().getDrawable(imageResId));
-		}
-		toast.setDuration(duration);
-		toast.showToast();
-	}
+        fun makeText(context: Context, text: String, imageResId: Int, duration: Long): Toast {
+            return Toast(context, text, imageResId, duration)
+        }
+    }
 }

@@ -1,64 +1,56 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import android.util.Log;
+import android.util.Log
 
-import androidx.annotation.NonNull;
+class Bookmarks : Things {
+    private var bookmarks: MutableList<Bookmark>
 
-import java.util.ArrayList;
-import java.util.List;
+    constructor() {
+        bookmarks = ArrayList()
+    }
 
-public class Bookmarks extends Things {
-	private List<Bookmark> bookmarks;
+    val things: List<Thing?>?
+        get() = super.convertToThings(bookmarks)
 
-	public Bookmarks() {
-		bookmarks = new ArrayList<>();
-	}
+    constructor(bookmarks: MutableList<Bookmark>) {
+        this.bookmarks = bookmarks
+    }
 
-	public List<Thing> getThings() {
-		return super.convertToThings(bookmarks);
-	}
+    fun getBookmarks(): MutableList<Bookmark> {
+        return bookmarks
+    }
 
-	public Bookmarks(@NonNull List<Bookmark> bookmarks) {
-		this.bookmarks = bookmarks;
-	}
+    fun setBookmarks(bookmarks: MutableList<Bookmark>) {
+        this.bookmarks = bookmarks
+    }
 
-	public List<Bookmark> getBookmarks() {
-		return bookmarks;
-	}
+    fun addBookmark(c: Bookmark, position: Int) {
+        bookmarks.add(position, c)
+    }
 
-	public void setBookmarks(List<Bookmark> bookmarks) {
-		this.bookmarks = bookmarks;
-	}
+    fun addBookmark(c: Bookmark) {
+        bookmarks.add(c)
+    }
 
-	public void addBookmark(Bookmark c, int position) {
-		bookmarks.add(position, c);
-	}
+    fun removeBookmark(index: Int) {
+        bookmarks.removeAt(index)
+    }
 
-	public void addBookmark(Bookmark c) {
-		bookmarks.add(c);
-	}
+    fun isBookmarkAvailable(c: Bookmark): Boolean {
+        var isExists = false
+        for (cse in bookmarks) {
+            Log.v("TAG", "com.saltechgroup. eee$cse")
+            if (cse.name == c.name) {
+                isExists = true
+                break
+            }
+        }
+        return !isExists
+    }
 
-	public void removeBookmark(int index) {
-		bookmarks.remove(index);
-	}
-
-	public boolean isBookmarkAvailable(Bookmark c) {
-		boolean isExists = false;
-		for (Bookmark cse : bookmarks) {
-			Log.v("TAG", "com.saltechgroup. eee" + cse);
-			if (cse.getName().equals(c.getName())) {
-				isExists = true;
-				break;
-			}
-		}
-		return !isExists;
-	}
-
-	@NonNull
-	@Override
-	public String toString() {
-		return "Bookmarks{" +
-				"bookmarks=" + bookmarks +
-				'}';
-	}
+    override fun toString(): String {
+        return "Bookmarks{" +
+                "bookmarks=" + bookmarks +
+                '}'
+    }
 }

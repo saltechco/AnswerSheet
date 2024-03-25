@@ -1,58 +1,56 @@
-package ir.saltech.answersheet.view.container;
+package ir.saltech.answersheet.view.container
 
-import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import ir.saltech.answersheet.R
+import ir.saltech.answersheet.`object`.container.Saver
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
+class MaterialFragmentShower : MaterialDialogFragment {
+    private var context: Context? = null
+    private var wanted: Fragment? = null
+    var hasContent: Boolean = false
+    var isLayoutMatchParent: Boolean = false
+    private var cancelable = false
+    private var parent: Fragment? = null
+    private var contentFragment: Fragment? = null
 
-import ir.saltech.answersheet.R;
-import ir.saltech.answersheet.object.container.Saver;
+    constructor() : super()
 
-public class MaterialFragmentShower extends MaterialDialogFragment {
-    private Context context;
-    private Fragment wanted;
-    private boolean hasContent;
-    private boolean layoutMatchParent;
-    private boolean cancelable;
-    private Fragment parent;
-    private Fragment contentFragment;
-
-    public MaterialFragmentShower() {
-        super();
-    }
-
-    public MaterialFragmentShower(@NonNull Context context) {
-        super();
-        this.context = context;
-        Saver.getInstance(context).setDismissSide(SIDE_FRAGMENT_SHOWER);
+    constructor(context: Context) : super() {
+        this.context = context
+        Saver.Companion.getInstance(context)
+            .dismissSide = (SIDE_FRAGMENT_SHOWER)
     }
 
     @SuppressLint("LogConditional")
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Log.i("TAG", "Fragment: " + wanted + " Match Parent Wanted? " + layoutMatchParent);
-        super.setDismissReceiver(new BroadcastReceiver() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.i("TAG", "Fragment: $wanted Match Parent Wanted? $isLayoutMatchParent")
+        super.setDismissReceiver(object : BroadcastReceiver() {
             @SuppressLint("SyntheticAccessor")
-            @Override
-            public void onReceive(Context context2, Intent intent) {
-                if (Saver.getInstance(context2).getDismissSide() != null) {
-                    if (Saver.getInstance(context2).getDismissSide().equals(SIDE_FRAGMENT_SHOWER)) {
-                        if (hasContent) {
-                            if (parent != null && contentFragment != null)
-                                getActivity().getSupportFragmentManager().beginTransaction().remove(contentFragment).remove(parent).add(R.id.dialog_content_frame, parent).addToBackStack(DIALOG_CONTENT_BACKSTACK).commit();
+            override fun onReceive(context2: Context, intent: Intent) {
+                if (Saver.Companion.getInstance(context2).dismissSide != null) {
+                    if (Saver.Companion.getInstance(context2)
+                            .dismissSide == SIDE_FRAGMENT_SHOWER
+                    ) {
+                        if (this@MaterialFragmentShower.hasContent) {
+                            if (parent != null && contentFragment != null) activity!!.supportFragmentManager.beginTransaction()
+                                .remove(
+                                    contentFragment!!
+                                ).remove(parent!!).add(R.id.dialog_content_frame, parent!!)
+                                .addToBackStack(DIALOG_CONTENT_BACKSTACK)
+                                .commit()
                             //requireActivity().getSupportFragmentManager().popBackStack(DIALOG_CONTENT_BACKSTACK, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                         } else {
                             // TODO: Setup this.......
-							/*if (!wanted.toString().contains("SharingRequestDialog") && !wanted.toString().contains("EditCategoryDialog")) {
+                            /*if (!wanted.toString().contains("SharingRequestDialog") && !wanted.toString().contains("EditCategoryDialog")) {
 								sendAddingCategoryBroadcast(MainActivity.CONTINUE_TIME);
 								if (!Saver.getInstance(getContext()).getBackupRestoringStatus() && !Saver.getInstance(getContext()).getBackupCreatingStatus()) {
 									dismiss(MaterialFragmentShower.this);
@@ -64,54 +62,36 @@ public class MaterialFragmentShower extends MaterialDialogFragment {
                     }
                 }
             }
-        });
-        super.setContentView(wanted, layoutMatchParent);
-        super.setCancelable(cancelable);
-        show();
+        })
+        super.setContentView(wanted, isLayoutMatchParent)
+        super.setCancelable(cancelable)
+        show()
     }
 
-    private void sendAddingCategoryBroadcast(String status) {
+    private fun sendAddingCategoryBroadcast(status: String) {
         // TODO: Setup this.........
-		/*Intent intent = new Intent(MainActivity.CATEGORY_ADDING_RECEIVER_INTENT);
+        /*Intent intent = new Intent(MainActivity.CATEGORY_ADDING_RECEIVER_INTENT);
 		intent.putExtra(MainActivity.CATEGORY_ADDING_RECEIVER_RESULT, status);
 		LocalBroadcastManager.getInstance(context).sendBroadcast(intent);*/
     }
 
-    public boolean isCancelable() {
-        return cancelable;
+    fun isCancelable(): Boolean {
+        return cancelable
     }
 
-    @Override
-    public void setCancelable(boolean cancelable) {
-        this.cancelable = cancelable;
+    public override fun setCancelable(cancelable: Boolean) {
+        this.cancelable = cancelable
     }
 
-    public boolean isLayoutMatchParent() {
-        return layoutMatchParent;
-    }
+    var fragment: Fragment?
+        get() = wanted
+        set(wanted) {
+            this.wanted = wanted
+        }
 
-    public void setLayoutMatchParent(boolean layoutMatchParent) {
-        this.layoutMatchParent = layoutMatchParent;
-    }
-
-    public Fragment getFragment() {
-        return wanted;
-    }
-
-    public void setFragment(@NonNull Fragment wanted) {
-        this.wanted = wanted;
-    }
-
-    public boolean isHasContent() {
-        return hasContent;
-    }
-
-    public void setHasContent(boolean hasContent) {
-        this.hasContent = hasContent;
-    }
-
-    public void show(FragmentActivity activity, MaterialFragmentShower shower) {
-        activity.getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, shower).addToBackStack(DIALOG_BACKSTACK).commit();
+    fun show(activity: FragmentActivity, shower: MaterialFragmentShower?) {
+        activity.supportFragmentManager.beginTransaction().add(R.id.fragment_container, shower!!)
+            .addToBackStack(DIALOG_BACKSTACK).commit()
     }
 
     /**
@@ -120,9 +100,15 @@ public class MaterialFragmentShower extends MaterialDialogFragment {
      * @param fragment Wanted Dialog
      * @param currentFragment Current Dialog
      */
-    public void setContentFragment(FragmentActivity activity, Fragment fragment, Fragment currentFragment) {
-        this.parent = currentFragment;
-        this.contentFragment = fragment;
-        activity.getSupportFragmentManager().beginTransaction().add(R.id.dialog_content_frame, fragment).addToBackStack(DIALOG_CONTENT_BACKSTACK).commit();
+    fun setContentFragment(
+        activity: FragmentActivity,
+        fragment: Fragment?,
+        currentFragment: Fragment?
+    ) {
+        this.parent = currentFragment
+        this.contentFragment = fragment
+        activity.supportFragmentManager.beginTransaction()
+            .add(R.id.dialog_content_frame, fragment!!)
+            .addToBackStack(DIALOG_CONTENT_BACKSTACK).commit()
     }
 }

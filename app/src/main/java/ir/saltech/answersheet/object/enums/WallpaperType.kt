@@ -1,5 +1,5 @@
-package ir.saltech.answersheet.object.enums;
+package ir.saltech.answersheet.`object`.enums
 
-public enum WallpaperType {
+enum class WallpaperType {
     Picture, Animation
 }

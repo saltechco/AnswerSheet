@@ -1,24 +1,23 @@
-package ir.saltech.answersheet.intf.listener;
+package ir.saltech.answersheet.intf.listener
 
-import ir.saltech.answersheet.object.data.Question;
+import ir.saltech.answersheet.`object`.data.Question
 
-public interface QuestionClickedListener {
-
+interface QuestionClickedListener {
     /**
      * For Grid question lists
      * @param question The current question
      * @param x pointer (x,y) -> x
      * @param y pointer (x,y) -> y
      */
-    void onQuestionClicked(Question question, float x, float y);
+    fun onQuestionClicked(question: Question?, x: Float, y: Float)
 
-    void onQuestionAnswered(Question q);
+    fun onQuestionAnswered(q: Question?)
 
-    void onQuestionAnswerDeleted(Question q);
+    fun onQuestionAnswerDeleted(q: Question?)
 
-    void onQuestionBookmarkChanged(Question q);
+    fun onQuestionBookmarkChanged(q: Question?)
 
-    void onQuestionDeleted(int qPosition);
+    fun onQuestionDeleted(qPosition: Int)
 
-    void onQuestionCategoryClicked();
+    fun onQuestionCategoryClicked()
 }

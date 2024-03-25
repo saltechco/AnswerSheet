@@ -1,28 +1,24 @@
-package ir.saltech.answersheet.view.holder;
+package ir.saltech.answersheet.view.holder
 
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import ir.saltech.answersheet.R
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+class ThingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var thingLayout: LinearLayout? = null
+    var thingIcon: ImageView? = null
+    var thingText: TextView? = null
 
-import ir.saltech.answersheet.R;
-
-public class ThingViewHolder extends RecyclerView.ViewHolder {
-    public LinearLayout thingLayout;
-    public ImageView thingIcon;
-    public TextView thingText;
-
-    public ThingViewHolder(@NonNull View itemView) {
-        super(itemView);
-        init(itemView);
+    init {
+        init(itemView)
     }
 
-    private void init(View v) {
-        thingLayout = v.findViewById(R.id.row_thing_layout);
-        thingIcon = v.findViewById(R.id.row_thing_icon);
-        thingText = v.findViewById(R.id.row_thing_text);
+    private fun init(v: View) {
+        thingLayout = v.findViewById<LinearLayout>(R.id.row_thing_layout)
+        thingIcon = v.findViewById<ImageView>(R.id.row_thing_icon)
+        thingText = v.findViewById<TextView>(R.id.row_thing_text)
     }
 }

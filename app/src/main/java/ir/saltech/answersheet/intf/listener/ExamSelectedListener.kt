@@ -1,17 +1,17 @@
-package ir.saltech.answersheet.intf.listener;
+package ir.saltech.answersheet.intf.listener
 
-import ir.saltech.answersheet.object.data.Exam;
+import ir.saltech.answersheet.`object`.data.Exam
 
-public interface ExamSelectedListener {
-    void onExamDeleted(Exam exam, int position, String side);
+interface ExamSelectedListener {
+    fun onExamDeleted(exam: Exam?, position: Int, side: String)
 
-    void onExamResumed(Exam exam);
+    fun onExamResumed(exam: Exam)
 
-    void onExamSuspended(Exam exam);
+    fun onExamSuspended(exam: Exam?)
 
-    void onExamClicked(Exam exam, String side);
+    fun onExamClicked(exam: Exam, side: String)
 
-    void onAddExamWanted();
+    fun onAddExamWanted()
 
-    void onExamEdited(Exam exam);
+    fun onExamEdited(exam: Exam?)
 }

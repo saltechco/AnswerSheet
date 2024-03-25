@@ -1,65 +1,57 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import android.util.Log;
+import android.util.Log
 
-import androidx.annotation.NonNull;
+class ExamNames : Things {
+    private var examNames: MutableList<ExamName>
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ExamNames extends Things {
-    private List<ExamName> examNames;
-
-    public ExamNames() {
-        examNames = new ArrayList<>();
+    constructor() {
+        examNames = ArrayList()
     }
 
-    public ExamNames(List<ExamName> examNames) {
-        this.examNames = examNames;
+    constructor(examNames: MutableList<ExamName>) {
+        this.examNames = examNames
     }
 
-    public List<ExamName> getExamNames() {
-        return examNames;
+    fun getExamNames(): List<ExamName> {
+        return examNames
     }
 
-    public void setExamNames(List<ExamName> examNames) {
-        this.examNames = examNames;
+    fun setExamNames(examNames: MutableList<ExamName>) {
+        this.examNames = examNames
     }
 
-    public List<Thing> getThings() {
-        return super.convertToThings(examNames);
+    val things: List<Thing?>?
+        get() = super.convertToThings(examNames)
+
+    fun addExamName(c: ExamName, position: Int) {
+        examNames.add(position, c)
     }
 
-    public void addExamName(ExamName c, int position) {
-        examNames.add(position, c);
+    fun addExamName(c: ExamName) {
+        examNames.add(c)
     }
 
-    public void addExamName(ExamName c) {
-        examNames.add(c);
+    fun removeCourse(index: Int) {
+        examNames.removeAt(index)
     }
 
-    public void removeCourse(int index) {
-        examNames.remove(index);
-    }
-
-    public boolean isCourseAvailable(ExamName c) {
-        boolean isExists = false;
-        for (ExamName cse : examNames) {
-            Log.v("TAG", "com.saltechgroup. eee" + cse);
-            if (cse.getName().equals(c.getName())) {
-                isExists = true;
-                break;
+    fun isCourseAvailable(c: ExamName): Boolean {
+        var isExists = false
+        for (cse in examNames) {
+            Log.v("TAG", "com.saltechgroup. eee$cse")
+            if (cse.getName() == c.getName()) {
+                isExists = true
+                break
             }
         }
-        return !isExists;
+        return !isExists
     }
 
-    @NonNull
-    @Override
-    public String toString() {
+    override fun toString(): String {
         return "Courses{" +
                 "examNames=" + examNames +
-                '}';
+                '}'
     }
 }
 

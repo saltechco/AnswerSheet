@@ -1,5 +1,5 @@
-package ir.saltech.answersheet.intf.listener;
+package ir.saltech.answersheet.intf.listener
 
-public interface DialogDismissListener {
-	void onDismissed();
+interface DialogDismissListener {
+    fun onDismissed()
 }

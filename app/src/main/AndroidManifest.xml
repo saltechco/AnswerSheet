@@ -30,25 +30,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="tiramisu">
-<!--        <activity-->
-<!--            android:name=".view.activity.ResponsiveActivity"-->
-<!--            android:exported="true"-->
-<!--            android:label="@string/title_activity_responsive"-->
-<!--            android:resizeableActivity="true"-->
-<!--            android:theme="@style/AppTheme.NoActionBar"-->
-<!--            tools:targetApi="24">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
         <activity
             android:name=".view.activity.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden"
             android:exported="true"
             android:hardwareAccelerated="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

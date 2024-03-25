@@ -1,5 +1,5 @@
-package ir.saltech.answersheet.intf.listener;
+package ir.saltech.answersheet.intf.listener
 
-public interface AuthenticationChangedListener {
-    void onAuthenticationSucceed();
+interface AuthenticationChangedListener {
+    fun onAuthenticationSucceed()
 }

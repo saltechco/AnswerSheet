@@ -1,12 +1,12 @@
-package ir.saltech.answersheet.intf.listener;
+package ir.saltech.answersheet.intf.listener
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.View
+import android.view.ViewGroup
 
-public interface CollapseBarChangedListener {
-    void onClosed(View v, ViewGroup parent);
+interface CollapseBarChangedListener {
+    fun onClosed(v: View?, parent: ViewGroup?)
 
-    void onCollapsed(View v, ViewGroup parent);
-    void onFullscreen(View v, ViewGroup parent);
-    void onRestored(View v, ViewGroup parent);
+    fun onCollapsed(v: View?, parent: ViewGroup?)
+    fun onFullscreen(v: View?, parent: ViewGroup?)
+    fun onRestored(v: View?, parent: ViewGroup?)
 }

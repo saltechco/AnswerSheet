@@ -1,109 +1,130 @@
-package ir.saltech.answersheet.object.util;
+package ir.saltech.answersheet.`object`.util
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.ColorFilter
+import android.graphics.LightingColorFilter
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
+import android.graphics.RectF
+import android.renderscript.Allocation
+import android.renderscript.Element
+import android.renderscript.RenderScript
+import android.renderscript.ScriptIntrinsicBlur
 
-
-public class ImageHelper {
-
-    public static void blurBitmapWithRenderscript(RenderScript rs, Bitmap bitmap2) {
+object ImageHelper {
+    fun blurBitmapWithRenderscript(rs: RenderScript?, bitmap2: Bitmap?) {
         //this will blur the bitmapOriginal with a radius of 25 and save it in bitmapOriginal
-        final Allocation input = Allocation.createFromBitmap(rs, bitmap2); //use this constructor for best performance, because it uses USAGE_SHARED mode which reuses memory
-        final Allocation output = Allocation.createTyped(rs, input.getType());
-        final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+        val input: Allocation = Allocation.createFromBitmap(
+            rs,
+            bitmap2
+        ) //use this constructor for best performance, because it uses USAGE_SHARED mode which reuses memory
+        val output: Allocation = Allocation.createTyped(rs, input.type)
+        val script: ScriptIntrinsicBlur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs))
         // must be >0 and <= 25
-        script.setRadius(25f);
+        script.setRadius(25f)
 
-        script.setInput(input);
-        script.forEach(output);
-        output.copyTo(bitmap2);
+        script.setInput(input)
+        script.forEach(output)
+        output.copyTo(bitmap2)
     }
 
-    public static Bitmap roundCorners(Bitmap bitmap,
-                                      int cornerRadiusInPixels,
-                                      boolean captureCircle) {
-        Bitmap output = Bitmap.createBitmap(
-                bitmap.getWidth(),
-                bitmap.getHeight(),
-                Bitmap.Config.ARGB_4444);
-        Canvas canvas = new Canvas(output);
+    fun roundCorners(
+        bitmap: Bitmap,
+        cornerRadiusInPixels: Int,
+        captureCircle: Boolean
+    ): Bitmap {
+        val output = Bitmap.createBitmap(
+            bitmap.width,
+            bitmap.height,
+            Bitmap.Config.ARGB_4444
+        )
+        val canvas = Canvas(output)
 
-        final int color = 0xffff0000;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0,
-                0,
-                bitmap.getWidth(),
-                bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
+        val color = -0x10000
+        val paint = Paint()
+        val rect = Rect(
+            0,
+            0,
+            bitmap.width,
+            bitmap.height
+        )
+        val rectF: RectF = RectF(rect)
 
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
+        paint.isAntiAlias = true
+        canvas.drawARGB(0, 0, 0, 0)
+        paint.color = color
         if (captureCircle) {
-            canvas.drawCircle(rectF.centerX(),
-                    rectF.centerY(),
-                    (float) bitmap.getWidth() / 2,
-                    paint);
+            canvas.drawCircle(
+                rectF.centerX(),
+                rectF.centerY(),
+                bitmap.width.toFloat() / 2,
+                paint
+            )
         } else {
-            canvas.drawRoundRect(rectF,
-                    (float) cornerRadiusInPixels,
-                    (float) cornerRadiusInPixels,
-                    paint);
+            canvas.drawRoundRect(
+                rectF,
+                cornerRadiusInPixels.toFloat(),
+                cornerRadiusInPixels.toFloat(),
+                paint
+            )
         }
 
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
+        paint.setXfermode(PorterDuffXfermode(PorterDuff.Mode.SRC_IN))
+        canvas.drawBitmap(bitmap, rect, rect, paint)
 
-        return output;
+        return output
     }
 
-    public static Bitmap getRoundedCornerAndLightenBitmap(Bitmap bitmap, int cornerRadiusInPixels, boolean captureCircle) {
-        Bitmap output = Bitmap.createBitmap(
-                bitmap.getWidth(),
-                bitmap.getHeight(),
-                Bitmap.Config.ARGB_4444);
-        Canvas canvas = new Canvas(output);
+    fun getRoundedCornerAndLightenBitmap(
+        bitmap: Bitmap,
+        cornerRadiusInPixels: Int,
+        captureCircle: Boolean
+    ): Bitmap {
+        val output = Bitmap.createBitmap(
+            bitmap.width,
+            bitmap.height,
+            Bitmap.Config.ARGB_4444
+        )
+        val canvas = Canvas(output)
 
-        final int color = 0xffffffff;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0,
-                0,
-                bitmap.getWidth(),
-                bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
+        val color = -0x1
+        val paint = Paint()
+        val rect = Rect(
+            0,
+            0,
+            bitmap.width,
+            bitmap.height
+        )
+        val rectF: RectF = RectF(rect)
 
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
+        paint.isAntiAlias = true
+        canvas.drawARGB(0, 0, 0, 0)
+        paint.color = color
         if (captureCircle) {
-            canvas.drawCircle(rectF.centerX(),
-                    rectF.centerY(),
-                    (float) bitmap.getWidth() / 2,
-                    paint);
+            canvas.drawCircle(
+                rectF.centerX(),
+                rectF.centerY(),
+                bitmap.width.toFloat() / 2,
+                paint
+            )
         } else {
-            canvas.drawRoundRect(rectF,
-                    (float) cornerRadiusInPixels,
-                    (float) cornerRadiusInPixels,
-                    paint);
+            canvas.drawRoundRect(
+                rectF,
+                cornerRadiusInPixels.toFloat(),
+                cornerRadiusInPixels.toFloat(),
+                paint
+            )
         }
 
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        ColorFilter filter = new LightingColorFilter(0xFFFFFFFF, 0x00222222); // lighten
+        paint.setXfermode(PorterDuffXfermode(PorterDuff.Mode.SRC_IN))
+        val filter: ColorFilter = LightingColorFilter(-0x1, 0x00222222) // lighten
         //ColorFilter filter = new LightingColorFilter(0xFF7F7F7F, 0x00000000);    // darken
-        paint.setColorFilter(filter);
-        canvas.drawBitmap(bitmap, rect, rect, paint);
+        paint.setColorFilter(filter)
+        canvas.drawBitmap(bitmap, rect, rect, paint)
 
-        return output;
+        return output
     }
 }

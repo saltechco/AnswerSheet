@@ -1,129 +1,131 @@
-package ir.saltech.answersheet.view.container;
+package ir.saltech.answersheet.view.container
 
-import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.View;
+import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.FragmentActivity
+import ir.saltech.answersheet.R
+import ir.saltech.answersheet.`object`.container.Saver
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
+class MaterialAlertDialog(private val context: Context) : MaterialDialogFragment() {
+    private var icon: Drawable? = null
+    private var title: String? = null
+    private var message: String? = null
+    private var primaryButtonTitle: String? = null
+    private var secondaryButtonTitle: String? = null
+    private var naturalButtonTitle: String? = null
+    private var primaryClickListener: View.OnClickListener? = null
+    private var secondaryClickListener: View.OnClickListener? = null
+    private var naturalClickListener: View.OnClickListener? = null
+    private var cancelable = false
+    private var progressbarEnabled = false
 
-import ir.saltech.answersheet.R;
-import ir.saltech.answersheet.object.container.Saver;
+    init {
+        Saver.Companion.getInstance(requireContext())
+            .dismissSide = (SIDE_ALERT_DIALOG)
+    }
 
-public class MaterialAlertDialog extends MaterialDialogFragment {
-	private final Context context;
-	private Drawable icon;
-	private String title;
-	private String message;
-	private String primaryButtonTitle;
-	private String secondaryButtonTitle;
-	private String naturalButtonTitle;
-	private View.OnClickListener primaryClickListener;
-	private View.OnClickListener secondaryClickListener;
-	private View.OnClickListener naturalClickListener;
-	private boolean cancelable;
-	private boolean progressbarEnabled;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        super.setDismissReceiver(object : BroadcastReceiver() {
+            @SuppressLint("SyntheticAccessor")
+            override fun onReceive(context: Context, intent: Intent) {
+                if (Saver.Companion.getInstance(requireContext()).dismissSide != null) {
+                    if (Saver.Companion.getInstance(requireContext())
+                            .dismissSide == SIDE_ALERT_DIALOG
+                    ) {
+                        try {
+                            dismiss(this@MaterialAlertDialog)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                }
+            }
+        })
+        super.setIcon(icon)
+        super.setTitle(title)
+        super.setMessage(message)
+        super.setPositiveButton(primaryButtonTitle, primaryClickListener)
+        super.setNegativeButton(secondaryButtonTitle, secondaryClickListener)
+        super.setNaturalButton(naturalButtonTitle, naturalClickListener)
+        super.setCancelable(cancelable)
+        super.showProgressBar(progressbarEnabled)
+        super.show()
+    }
 
-	public MaterialAlertDialog(@NonNull Context context) {
-		this.context = context;
-		Saver.getInstance(getContext()).setDismissSide(SIDE_ALERT_DIALOG);
-	}
+    fun setProgressbarEnabled(progressbarEnabled: Boolean) {
+        this.progressbarEnabled = progressbarEnabled
+    }
 
-	@Override
-	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-		super.setDismissReceiver(new BroadcastReceiver() {
-			@SuppressLint("SyntheticAccessor")
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				if (Saver.getInstance(getContext()).getDismissSide() != null) {
-					if (Saver.getInstance(getContext()).getDismissSide().equals(SIDE_ALERT_DIALOG)) {
-						try {
-							dismiss(MaterialAlertDialog.this);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-		});
-		super.setIcon(icon);
-		super.setTitle(title);
-		super.setMessage(message);
-		super.setPositiveButton(primaryButtonTitle, primaryClickListener);
-		super.setNegativeButton(secondaryButtonTitle, secondaryClickListener);
-		super.setNaturalButton(naturalButtonTitle, naturalClickListener);
-		super.setCancelable(cancelable);
-		super.showProgressBar(progressbarEnabled);
-		super.show();
-	}
+    fun isCancelable(): Boolean {
+        return cancelable
+    }
 
-	public void setProgressbarEnabled(boolean progressbarEnabled) {
-		this.progressbarEnabled = progressbarEnabled;
-	}
+    public override fun setCancelable(cancelable: Boolean) {
+        this.cancelable = cancelable
+    }
 
-	public boolean isCancelable() {
-		return cancelable;
-	}
+    fun getIcon(): Drawable? {
+        return icon
+    }
 
-	@Override
-	public void setCancelable(boolean cancelable) {
-		this.cancelable = cancelable;
-	}
+    public override fun setIcon(icon: Drawable?) {
+        this.icon = icon
+    }
 
-	public Drawable getIcon() {
-		return icon;
-	}
+    @SuppressLint("UseCompatLoadingForDrawables")
+    fun setIcon(resId: Int) {
+        this.icon = context.resources.getDrawable(resId)
+    }
 
-	@Override
-	public void setIcon(Drawable icon) {
-		this.icon = icon;
-	}
+    fun getTitle(): String? {
+        return title
+    }
 
-	@SuppressLint("UseCompatLoadingForDrawables")
-	public void setIcon(int resId) {
-		this.icon = context.getResources().getDrawable(resId);
-	}
+    public override fun setTitle(title: String?) {
+        this.title = title
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    fun getMessage(): String? {
+        return message
+    }
 
-	@Override
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public override fun setMessage(message: String?) {
+        this.message = message
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public override fun setPositiveButton(
+        primaryButtonTitle: String?,
+        primaryClickListener: View.OnClickListener?
+    ) {
+        this.primaryButtonTitle = primaryButtonTitle
+        this.primaryClickListener = primaryClickListener
+    }
 
-	@Override
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public override fun setNaturalButton(
+        naturalButtonTitle: String?,
+        naturalClickListener: View.OnClickListener?
+    ) {
+        this.naturalButtonTitle = naturalButtonTitle
+        this.naturalClickListener = naturalClickListener
+    }
 
-	public void setPositiveButton(String primaryButtonTitle, View.OnClickListener primaryClickListener) {
-		this.primaryButtonTitle = primaryButtonTitle;
-		this.primaryClickListener = primaryClickListener;
-	}
+    public override fun setNegativeButton(
+        secondaryButtonTitle: String?,
+        clickListener: View.OnClickListener?
+    ) {
+        this.secondaryButtonTitle = secondaryButtonTitle
+        this.secondaryClickListener = clickListener
+    }
 
-	public void setNaturalButton(String naturalButtonTitle, View.OnClickListener naturalClickListener) {
-		this.naturalButtonTitle = naturalButtonTitle;
-		this.naturalClickListener = naturalClickListener;
-	}
-
-	public void setNegativeButton(String secondaryButtonTitle, View.OnClickListener secondaryClickListener) {
-		this.secondaryButtonTitle = secondaryButtonTitle;
-		this.secondaryClickListener = secondaryClickListener;
-	}
-
-	public void show(FragmentActivity activity) {
-		activity.getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, MaterialAlertDialog.this).addToBackStack(DIALOG_BACKSTACK).commit();
-	}
+    fun show(activity: FragmentActivity) {
+        activity.supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, this@MaterialAlertDialog)
+            .addToBackStack(DIALOG_BACKSTACK).commit()
+    }
 }

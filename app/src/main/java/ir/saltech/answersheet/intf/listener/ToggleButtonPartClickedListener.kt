@@ -1,5 +1,5 @@
-package ir.saltech.answersheet.intf.listener;
+package ir.saltech.answersheet.intf.listener
 
-public interface ToggleButtonPartClickedListener {
-    void onToggleButtonPartClicked(int tbPartId);
+interface ToggleButtonPartClickedListener {
+    fun onToggleButtonPartClicked(tbPartId: Int)
 }

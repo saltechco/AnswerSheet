@@ -1,212 +1,228 @@
-package ir.saltech.answersheet.view.dialog;
+package ir.saltech.answersheet.view.dialog
 
-import static android.graphics.PorterDuff.Mode.SRC_IN;
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.PorterDuff
+import android.media.MediaPlayer
+import android.os.Bundle
+import android.os.Vibrator
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.ImageView
+import android.widget.Switch
+import androidx.fragment.app.Fragment
+import ir.saltech.answersheet.R
+import ir.saltech.answersheet.`object`.container.Saver
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.os.Vibrator;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Switch;
+class VisualEffectsDialog : Fragment() {
+    private var saver: Saver? = null
+    private var vibrator: Vibrator? = null
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import ir.saltech.answersheet.R;
-import ir.saltech.answersheet.object.container.Saver;
-
-public class VisualEffectsDialog extends Fragment {
-    private Saver saver;
-    private Vibrator vibrator;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
-    private Switch keepScreenOn;
-    private ImageView keepScreenOnImg;
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    private Switch vibrationEffects;
-    private ImageView vibrationEffectsImg;
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    private Switch musicEffects;
-    private ImageView musicEffectsImg;
-    private AnimatorSet animatorSet;
-    private MediaPlayer player;
+    private var keepScreenOn: Switch? = null
+    private var keepScreenOnImg: ImageView? = null
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.dialog_visual_effects, container, false);
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private var vibrationEffects: Switch? = null
+    private var vibrationEffectsImg: ImageView? = null
+
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private var musicEffects: Switch? = null
+    private var musicEffectsImg: ImageView? = null
+    private var animatorSet: AnimatorSet? = null
+    private var player: MediaPlayer? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.dialog_visual_effects, container, false)
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        init(view);
-        saver = Saver.getInstance(getContext());
-        vibrator = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);
-        loadRecentSettings();
-        onClicks();
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init(view)
+        saver = Saver.getInstance(requireContext())
+        vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        loadRecentSettings()
+        onClicks()
     }
 
-    private void onClicks() {
-        keepScreenOn.setOnCheckedChangeListener((compoundButton, b) -> {
-            saver = Saver.getInstance(getContext());
-            ValueAnimator animatorScaleX = ValueAnimator.ofFloat(1f, 0.6f, 1.05f, 1f);
-            animatorScaleX.addUpdateListener(valueAnimator -> {
-                float animatedValue = (float) valueAnimator.getAnimatedValue();
-                keepScreenOnImg.setScaleX(animatedValue);
+    private fun onClicks() {
+        keepScreenOn!!.setOnCheckedChangeListener { _: CompoundButton?, b: Boolean ->
+            saver = Saver.Companion.getInstance(
+                requireContext()
+            )
+            val animatorScaleX: ValueAnimator = ValueAnimator.ofFloat(1f, 0.6f, 1.05f, 1f)
+            animatorScaleX.addUpdateListener { valueAnimator: ValueAnimator ->
+                val animatedValue = valueAnimator.getAnimatedValue() as Float
+                keepScreenOnImg!!.scaleX = animatedValue
                 if (animatedValue > 1f) {
                     if (b) {
-                        keepScreenOnImg.setImageResource(R.drawable.keep_screen_on);
+                        keepScreenOnImg!!.setImageResource(R.drawable.keep_screen_on)
                     } else {
-                        keepScreenOnImg.setImageResource(R.drawable.keep_screen_on_disable);
+                        keepScreenOnImg!!.setImageResource(R.drawable.keep_screen_on_disable)
                     }
-                    showStatusOfSetting(keepScreenOn, keepScreenOnImg, b);
+                    showStatusOfSetting(keepScreenOn, keepScreenOnImg, b)
                 }
-            });
-            ObjectAnimator animatorScaleY = ObjectAnimator.ofFloat(keepScreenOnImg, "scaleY", 1f, 0.6f, 1.05f, 1f);
-            animatorSet = new AnimatorSet();
-            animatorSet.playTogether(animatorScaleX, animatorScaleY);
-            animatorSet.setStartDelay(75);
-            animatorSet.setDuration(275);
-            animatorSet.start();
-            saver.setKeepScreenOn(b);
-        });
-        if (vibrator.hasVibrator()) {
-            vibrationEffects.setVisibility(View.VISIBLE);
-            vibrationEffectsImg.setVisibility(View.VISIBLE);
-        } else {
-            vibrationEffects.setVisibility(View.GONE);
-            vibrationEffectsImg.setVisibility(View.GONE);
-            vibrationEffects.setChecked(false);
-            saver.setVibrationEffects(false);
-        }
-        vibrationEffects.setOnCheckedChangeListener((compoundButton, b) -> {
-            saver = Saver.getInstance(getContext());
-            if (b) {
-                vibrationEffectsImg.setScaleX(1f);
-                vibrationEffectsImg.setScaleY(1f);
-                vibrator.vibrate(new long[]{0, 225, 150, 225}, -1);
-                ValueAnimator animatorTranslationX = ValueAnimator.ofFloat(1f, 2.5f, -2.5f, 1f);
-                animatorTranslationX.addUpdateListener(valueAnimator -> {
-                    float animatedValue = (float) valueAnimator.getAnimatedValue();
-                    vibrationEffectsImg.setTranslationX(animatedValue);
-                    if (animatedValue < 1f) {
-                        vibrationEffectsImg.setImageResource(R.drawable.vibration_effects);
-                        showStatusOfSetting(vibrationEffects, vibrationEffectsImg, true);
-                    }
-                });
-                animatorTranslationX.setStartDelay(75);
-                animatorTranslationX.setDuration(100);
-                animatorTranslationX.setRepeatCount(5);
-                animatorTranslationX.start();
-            } else {
-                vibrationEffectsImg.setTranslationX(1f);
-                ValueAnimator animatorScaleX = ValueAnimator.ofFloat(1f, 0.6f, 1.05f, 1f);
-                animatorScaleX.addUpdateListener(valueAnimator -> {
-                    float animatedValue = (float) valueAnimator.getAnimatedValue();
-                    vibrationEffectsImg.setScaleX(animatedValue);
-                    if (animatedValue > 1f) {
-                        vibrationEffectsImg.setImageResource(R.drawable.keep_screen_on_disable);
-                        showStatusOfSetting(vibrationEffects, vibrationEffectsImg, false);
-                    }
-                });
-                ObjectAnimator animatorScaleY = ObjectAnimator.ofFloat(vibrationEffectsImg, "scaleY", 1f, 0.6f, 1.05f, 1f);
-                animatorSet = new AnimatorSet();
-                animatorSet.playTogether(animatorScaleX, animatorScaleY);
-                animatorSet.setStartDelay(75);
-                animatorSet.setDuration(275);
-                animatorSet.start();
             }
-            saver.setVibrationEffects(b);
-        });
-        musicEffects.setOnCheckedChangeListener((compoundButton, b) -> {
-            saver = Saver.getInstance(getContext());
-
-            ValueAnimator animatorScaleX = ValueAnimator.ofFloat(1f, 0.6f, 1.05f, 1f);
-            animatorScaleX.addUpdateListener(valueAnimator -> {
-                float animatedValue = (float) valueAnimator.getAnimatedValue();
-                musicEffectsImg.setScaleX(animatedValue);
+            val animatorScaleY: ObjectAnimator =
+                ObjectAnimator.ofFloat(keepScreenOnImg, "scaleY", 1f, 0.6f, 1.05f, 1f)
+            animatorSet = AnimatorSet()
+            animatorSet!!.playTogether(animatorScaleX, animatorScaleY)
+            animatorSet!!.setStartDelay(75)
+            animatorSet!!.setDuration(275)
+            animatorSet!!.start()
+            saver!!.keepScreenOn = b
+        }
+        if (vibrator!!.hasVibrator()) {
+            vibrationEffects!!.visibility = View.VISIBLE
+            vibrationEffectsImg!!.visibility = View.VISIBLE
+        } else {
+            vibrationEffects!!.visibility = View.GONE
+            vibrationEffectsImg!!.visibility = View.GONE
+            vibrationEffects!!.setChecked(false)
+            saver!!.vibrationEffects = (false)
+        }
+        vibrationEffects!!.setOnCheckedChangeListener { compoundButton: CompoundButton?, b: Boolean ->
+            saver = Saver.getInstance(
+                requireContext()
+            )
+            if (b) {
+                vibrationEffectsImg!!.scaleX = 1f
+                vibrationEffectsImg!!.scaleY = 1f
+                vibrator!!.vibrate(longArrayOf(0, 225, 150, 225), -1)
+                val animatorTranslationX: ValueAnimator = ValueAnimator.ofFloat(1f, 2.5f, -2.5f, 1f)
+                animatorTranslationX.addUpdateListener { valueAnimator: ValueAnimator ->
+                    val animatedValue = valueAnimator.getAnimatedValue() as Float
+                    vibrationEffectsImg!!.translationX = animatedValue
+                    if (animatedValue < 1f) {
+                        vibrationEffectsImg!!.setImageResource(R.drawable.vibration_effects)
+                        showStatusOfSetting(vibrationEffects, vibrationEffectsImg, true)
+                    }
+                }
+                animatorTranslationX.setStartDelay(75)
+                animatorTranslationX.setDuration(100)
+                animatorTranslationX.repeatCount = 5
+                animatorTranslationX.start()
+            } else {
+                vibrationEffectsImg!!.translationX = 1f
+                val animatorScaleX: ValueAnimator = ValueAnimator.ofFloat(1f, 0.6f, 1.05f, 1f)
+                animatorScaleX.addUpdateListener { valueAnimator: ValueAnimator ->
+                    val animatedValue = valueAnimator.getAnimatedValue() as Float
+                    vibrationEffectsImg!!.scaleX = animatedValue
+                    if (animatedValue > 1f) {
+                        vibrationEffectsImg!!.setImageResource(R.drawable.keep_screen_on_disable)
+                        showStatusOfSetting(vibrationEffects, vibrationEffectsImg, false)
+                    }
+                }
+                val animatorScaleY: ObjectAnimator =
+                    ObjectAnimator.ofFloat(vibrationEffectsImg, "scaleY", 1f, 0.6f, 1.05f, 1f)
+                animatorSet = AnimatorSet()
+                animatorSet!!.playTogether(animatorScaleX, animatorScaleY)
+                animatorSet!!.setStartDelay(75)
+                animatorSet!!.setDuration(275)
+                animatorSet!!.start()
+            }
+            saver!!.vibrationEffects = (b)
+        }
+        musicEffects!!.setOnCheckedChangeListener { compoundButton: CompoundButton?, b: Boolean ->
+            saver = Saver.Companion.getInstance(
+                requireContext()
+            )
+            val animatorScaleX: ValueAnimator = ValueAnimator.ofFloat(1f, 0.6f, 1.05f, 1f)
+            animatorScaleX.addUpdateListener(ValueAnimator.AnimatorUpdateListener { valueAnimator: ValueAnimator ->
+                val animatedValue = valueAnimator.getAnimatedValue() as Float
+                musicEffectsImg!!.scaleX = animatedValue
                 if (animatedValue > 1f) {
                     if (b) {
-                        playSoundEffect();
-                        musicEffectsImg.setImageResource(R.drawable.music_effects);
+                        playSoundEffect()
+                        musicEffectsImg!!.setImageResource(R.drawable.music_effects)
                     } else {
-                        musicEffectsImg.setImageResource(R.drawable.music_effects_disable);
+                        musicEffectsImg!!.setImageResource(R.drawable.music_effects_disable)
                     }
-                    showStatusOfSetting(musicEffects, musicEffectsImg, b);
+                    showStatusOfSetting(musicEffects, musicEffectsImg, b)
                 }
-            });
-            ObjectAnimator animatorScaleY = ObjectAnimator.ofFloat(musicEffectsImg, "scaleY", 1f, 0.6f, 1.05f, 1f);
-            animatorSet = new AnimatorSet();
-            animatorSet.playTogether(animatorScaleX, animatorScaleY);
-            animatorSet.setStartDelay(75);
-            animatorSet.setDuration(275);
-            animatorSet.start();
-            saver.setMusicEffects(b);
-        });
+            })
+            val animatorScaleY: ObjectAnimator =
+                ObjectAnimator.ofFloat(musicEffectsImg, "scaleY", 1f, 0.6f, 1.05f, 1f)
+            animatorSet = AnimatorSet()
+            animatorSet!!.playTogether(animatorScaleX, animatorScaleY)
+            animatorSet!!.setStartDelay(75)
+            animatorSet!!.setDuration(275)
+            animatorSet!!.start()
+            saver!!.musicEffects = (b)
+        }
     }
 
-    private void playSoundEffect() {
-        if (!player.isPlaying())
-            player.start();
+    private fun playSoundEffect() {
+        if (!player!!.isPlaying) player!!.start()
     }
 
-    private void loadRecentSettings() {
-        if (saver.getKeepScreenOn()) {
-            keepScreenOnImg.setImageResource(R.drawable.keep_screen_on);
+    private fun loadRecentSettings() {
+        if (saver!!.keepScreenOn) {
+            keepScreenOnImg!!.setImageResource(R.drawable.keep_screen_on)
         } else {
-            keepScreenOnImg.setImageResource(R.drawable.keep_screen_on_disable);
+            keepScreenOnImg!!.setImageResource(R.drawable.keep_screen_on_disable)
         }
-        if (saver.getVibrationEffects()) {
-            vibrationEffectsImg.setImageResource(R.drawable.vibration_effects);
+        if (saver!!.vibrationEffects) {
+            vibrationEffectsImg!!.setImageResource(R.drawable.vibration_effects)
         } else {
-            vibrationEffectsImg.setImageResource(R.drawable.keep_screen_on_disable);
+            vibrationEffectsImg!!.setImageResource(R.drawable.keep_screen_on_disable)
         }
-        if (saver.getMusicEffects()) {
-            musicEffectsImg.setImageResource(R.drawable.music_effects);
+        if (saver!!.musicEffects) {
+            musicEffectsImg!!.setImageResource(R.drawable.music_effects)
         } else {
-            musicEffectsImg.setImageResource(R.drawable.music_effects_disable);
+            musicEffectsImg!!.setImageResource(R.drawable.music_effects_disable)
         }
-        showStatusOfSetting(keepScreenOn, keepScreenOnImg, saver.getKeepScreenOn());
-        showStatusOfSetting(vibrationEffects, vibrationEffectsImg, saver.getVibrationEffects());
-        showStatusOfSetting(musicEffects, musicEffectsImg, saver.getMusicEffects());
+        showStatusOfSetting(keepScreenOn, keepScreenOnImg, saver!!.keepScreenOn)
+        showStatusOfSetting(vibrationEffects, vibrationEffectsImg, saver!!.keepScreenOn)
+        showStatusOfSetting(musicEffects, musicEffectsImg, saver!!.musicEffects)
     }
 
-    private void showStatusOfSetting(@SuppressLint("UseSwitchCompatOrMaterialCode") Switch setting, ImageView image, boolean enable) {
-        setting.setChecked(enable);
+    private fun showStatusOfSetting(
+        @SuppressLint("UseSwitchCompatOrMaterialCode") setting: Switch?,
+        image: ImageView?,
+        enable: Boolean
+    ) {
+        setting!!.setChecked(enable)
         if (enable) {
-            setting.setTextColor(getResources().getColor(R.color.colorAccent));
-            image.getDrawable().setColorFilter(getResources().getColor(R.color.colorAccent), SRC_IN);
+            setting.setTextColor(resources.getColor(R.color.colorAccent))
+            image!!.drawable.setColorFilter(
+                resources.getColor(R.color.colorAccent),
+                PorterDuff.Mode.SRC_IN
+            )
         } else {
-            setting.setTextColor(getResources().getColor(R.color.elements_color_tint));
-            image.getDrawable().setColorFilter(getResources().getColor(R.color.elements_color_tint), SRC_IN);
+            setting.setTextColor(resources.getColor(R.color.elements_color_tint))
+            image!!.drawable.setColorFilter(
+                resources.getColor(R.color.elements_color_tint),
+                PorterDuff.Mode.SRC_IN
+            )
         }
     }
 
-    private void init(View v) {
-        keepScreenOn = v.findViewById(R.id.use_keep_screen_on);
-        keepScreenOnImg = v.findViewById(R.id.use_keep_screen_on_img);
-        vibrationEffects = v.findViewById(R.id.use_vibration_effects);
-        vibrationEffectsImg = v.findViewById(R.id.use_vibration_effects_img);
-        musicEffects = v.findViewById(R.id.use_music_effects);
-        musicEffectsImg = v.findViewById(R.id.use_music_effects_img);
-        player = MediaPlayer.create(getContext(), R.raw.sound_effects_enabled);
-        player.setLooping(false);
-        player.setVolume(0.3f, 0.3f);
+    private fun init(v: View) {
+        keepScreenOn = v.findViewById<Switch>(R.id.use_keep_screen_on)
+        keepScreenOnImg = v.findViewById<ImageView>(R.id.use_keep_screen_on_img)
+        vibrationEffects = v.findViewById<Switch>(R.id.use_vibration_effects)
+        vibrationEffectsImg = v.findViewById<ImageView>(R.id.use_vibration_effects_img)
+        musicEffects = v.findViewById<Switch>(R.id.use_music_effects)
+        musicEffectsImg = v.findViewById<ImageView>(R.id.use_music_effects_img)
+        player = MediaPlayer.create(context, R.raw.sound_effects_enabled)
+        player!!.isLooping = false
+        player!!.setVolume(0.3f, 0.3f)
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+    override fun onDestroy() {
+        super.onDestroy()
         if (player != null) {
-            player.stop();
+            player!!.stop()
         }
     }
 }

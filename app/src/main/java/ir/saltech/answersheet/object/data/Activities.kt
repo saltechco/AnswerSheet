@@ -1,52 +1,43 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import androidx.annotation.NonNull;
+class Activities : Things {
+    private var activities: MutableList<Activity>
 
-import java.util.ArrayList;
-import java.util.List;
+    constructor() {
+        activities = ArrayList()
+    }
 
-public class Activities extends Things {
-	private List<Activity> activities;
+    constructor(Activities: MutableList<Activity>) {
+        this.activities = Activities
+    }
 
-	public Activities() {
-		activities = new ArrayList<>();
-	}
+    fun getActivities(): List<Activity> {
+        return activities
+    }
 
-	public Activities(@NonNull List<Activity> Activities) {
-		this.activities = Activities;
-	}
+    val things: List<Thing?>?
+        get() = super.convertToThings(activities)
 
-	@NonNull
-	public List<Activity> getActivities() {
-		return activities;
-	}
+    fun setActivities(Activities: MutableList<Activity>) {
+        this.activities = Activities
+    }
 
-	public List<Thing> getThings() {
-		return super.convertToThings(activities);
-	}
+    fun addActivity(c: Activity, position: Int) {
+        activities.add(position, c)
+    }
 
-	public void setActivities(@NonNull List<Activity> Activities) {
-		this.activities = Activities;
-	}
+    fun addActivity(c: Activity) {
+        activities.add(c)
+    }
 
-	public void addActivity(@NonNull Activity c, int position) {
-		activities.add(position, c);
-	}
+    fun removeActivity(index: Int) {
+        activities.removeAt(index)
+    }
 
-	public void addActivity(@NonNull Activity c) {
-		activities.add(c);
-	}
-
-	public void removeActivity(int index) {
-		activities.remove(index);
-	}
-
-	@NonNull
-	@Override
-	public String toString() {
-		return "Activities{" +
-				"Activities=" + activities +
-				'}';
-	}
+    override fun toString(): String {
+        return "Activities{" +
+                "Activities=" + activities +
+                '}'
+    }
 }
 

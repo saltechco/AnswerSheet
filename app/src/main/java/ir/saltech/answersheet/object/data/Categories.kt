@@ -1,65 +1,57 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import android.util.Log;
+import android.util.Log
 
-import androidx.annotation.NonNull;
+class Categories : Things {
+    private var categories: MutableList<Category>
 
-import java.util.ArrayList;
-import java.util.List;
+    constructor() {
+        categories = ArrayList()
+    }
 
-public class Categories extends Things {
-	private List<Category> categories;
+    constructor(categories: MutableList<Category>) {
+        this.categories = categories
+    }
 
-	public Categories() {
-		categories = new ArrayList<>();
-	}
+    val things: List<Thing?>?
+        get() = super.convertToThings(categories)
 
-	public Categories(List<Category> categories) {
-		this.categories = categories;
-	}
+    fun getCategories(): List<Category> {
+        return categories
+    }
 
-	public List<Thing> getThings() {
-		return super.convertToThings(categories);
-	}
+    fun setCategories(categories: MutableList<Category>) {
+        this.categories = categories
+    }
 
-	public List<Category> getCategories() {
-		return categories;
-	}
+    fun addCategory(c: Category, position: Int) {
+        categories.add(position, c)
+    }
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
+    fun addCategory(c: Category) {
+        categories.add(c)
+    }
 
-	public void addCategory(Category c, int position) {
-		categories.add(position, c);
-	}
+    fun removeCategory(index: Int) {
+        categories.removeAt(index)
+    }
 
-	public void addCategory(Category c) {
-		categories.add(c);
-	}
+    fun isCategoryAvailable(c: Category): Boolean {
+        var isExists = false
+        for (cse in categories) {
+            Log.v("TAG", "ir.saltech eee$cse")
+            if (cse.name == c.name) {
+                isExists = true
+                break
+            }
+        }
+        return !isExists
+    }
 
-	public void removeCategory(int index) {
-		categories.remove(index);
-	}
-
-	public boolean isCategoryAvailable(Category c) {
-		boolean isExists = false;
-		for (Category cse : categories) {
-			Log.v("TAG", "ir.saltech eee" + cse);
-			if (cse.getName().equals(c.getName())) {
-				isExists = true;
-				break;
-			}
-		}
-		return !isExists;
-	}
-
-	@NonNull
-	@Override
-	public String toString() {
-		return "Categories{" +
-				"categories=" + categories +
-				'}';
-	}
+    override fun toString(): String {
+        return "Categories{" +
+                "categories=" + categories +
+                '}'
+    }
 }
 

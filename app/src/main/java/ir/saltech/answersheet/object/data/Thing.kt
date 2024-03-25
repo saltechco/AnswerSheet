@@ -1,45 +1,19 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import androidx.annotation.NonNull;
+import org.jetbrains.annotations.Contract
 
-import org.jetbrains.annotations.Contract;
+open class Thing {
+    var title: String? = null
+    var iconResource: Int = 0
 
-public class Thing {
-    public static String thingName;
-    private String title;
-    private int iconResId;
-
-    @Contract(pure = true)
-    public static String getThingName() {
-        return thingName;
-    }
-
-    public static void setThingName(@NonNull String name) {
-        thingName = name;
-    }
-
-    public int getIconResource() {
-        return iconResId;
-    }
-
-    public void setIconResource(int iconResId) {
-        this.iconResId = iconResId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
+    override fun toString(): String {
         return "Thing{" +
                 "title='" + title + '\'' +
-                ", icon=" + iconResId +
-                '}';
+                ", icon=" + iconResource +
+                '}'
+    }
+
+    companion object {
+        var thingName: String? = null
     }
 }

@@ -1,34 +1,27 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import androidx.annotation.NonNull;
+class BookmarkColors {
+    private var bookmarkColors: MutableList<BookmarkColor>
 
-import java.util.ArrayList;
-import java.util.List;
+    init {
+        bookmarkColors = ArrayList()
+    }
 
-public class BookmarkColors {
-	private List<BookmarkColor> bookmarkColors;
+    fun getBookmarkColors(): List<BookmarkColor> {
+        return bookmarkColors
+    }
 
-	public BookmarkColors() {
-		bookmarkColors = new ArrayList<>();
-	}
+    fun setBookmarkColors(bookmarkColors: MutableList<BookmarkColor>) {
+        this.bookmarkColors = bookmarkColors
+    }
 
-	public List<BookmarkColor> getBookmarkColors() {
-		return bookmarkColors;
-	}
+    fun addBookmarkColor(q: BookmarkColor) {
+        bookmarkColors.add(q)
+    }
 
-	public void setBookmarkColors(List<BookmarkColor> bookmarkColors) {
-		this.bookmarkColors = bookmarkColors;
-	}
-
-	public void addBookmarkColor(BookmarkColor q) {
-		bookmarkColors.add(q);
-	}
-
-	@NonNull
-	@Override
-	public String toString() {
-		return "BookmarkColors{" +
-				"bookmarkColors=" + bookmarkColors +
-				'}';
-	}
+    override fun toString(): String {
+        return "BookmarkColors{" +
+                "bookmarkColors=" + bookmarkColors +
+                '}'
+    }
 }

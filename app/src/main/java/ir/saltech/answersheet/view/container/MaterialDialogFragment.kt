@@ -1,306 +1,336 @@
-package ir.saltech.answersheet.view.container;
+package ir.saltech.answersheet.view.container
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ArgbEvaluator
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.IntentFilter
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import ir.saltech.answersheet.R
+import ir.saltech.answersheet.intf.listener.DialogDismissListener
+import ir.saltech.answersheet.`object`.container.Saver
+import ir.saltech.answersheet.view.activity.MainActivity
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+open class MaterialDialogFragment : Fragment() {
+    private var dialogParent: ConstraintLayout? = null
+    private var iconImage: ImageView? = null
+    private var titleText: TextView? = null
+    private var messageText: TextView? = null
+    private var progressBar: ProgressBar? = null
+    private var buttonsPanel: LinearLayout? = null
+    private var contentFrame: FragmentContainerView? = null
+    private var primaryButtonView: Button? = null
+    private var secondaryButtonView: Button? = null
+    private var naturalButtonView: Button? = null
+    private var dialogCard: CardView? = null
+    private var backgroundFocus: View? = null
+    private var contentView: Fragment? = null
+    private var dismissListener: DialogDismissListener? = null
+    private var dismissReceiver: BroadcastReceiver? = null
+    private var lastColorState = false
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import ir.saltech.answersheet.R;
-import ir.saltech.answersheet.intf.listener.DialogDismissListener;
-import ir.saltech.answersheet.object.container.Saver;
-import ir.saltech.answersheet.view.activity.MainActivity;
-
-public class MaterialDialogFragment extends Fragment {
-    public static final String SIDE_ALERT_DIALOG = "side_alert_dialog";
-    public static final String SIDE_FRAGMENT_SHOWER = "side_fragment_shower";
-    public static final String DISMISS_DIALOG_EVENT = "dismiss_dialog_event";
-    public static final String DIALOG_BACKSTACK = "dialog_backstack";
-    public static final String DIALOG_CONTENT_BACKSTACK = "dialog_content_backstack";
-    private static final int DEFAULT_COLOR = Color.argb(185, 0, 0, 0);
-    private ConstraintLayout dialogParent;
-    private ImageView iconImage;
-    private TextView titleText;
-    private TextView messageText;
-    private ProgressBar progressBar;
-    private LinearLayout buttonsPanel;
-    private FragmentContainerView contentFrame;
-    private Button primaryButtonView;
-    private Button secondaryButtonView;
-    private Button naturalButtonView;
-    private CardView dialogCard;
-    private View backgroundFocus;
-    private Fragment contentView;
-    private DialogDismissListener dismissListener;
-    private BroadcastReceiver dismissReceiver;
-    private boolean lastColorState;
-
-    public MaterialDialogFragment() {
-        super();
+    protected fun getDismissReceiver(): BroadcastReceiver {
+        return dismissReceiver!!
     }
 
-    @NonNull
-    protected BroadcastReceiver getDismissReceiver() {
-        return dismissReceiver;
+    protected fun setDismissReceiver(dismissReceiver: BroadcastReceiver) {
+        this.dismissReceiver = dismissReceiver
     }
 
-    protected void setDismissReceiver(@NonNull BroadcastReceiver dismissReceiver) {
-        this.dismissReceiver = dismissReceiver;
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_material_dialog, container, false)
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_material_dialog, container, false);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        init(view)
+        prepareView()
+        onClicks()
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        init(view);
-        prepareView();
-        onClicks();
+    private fun prepareView() {
+        lastColorState = Saver.Companion.getInstance(requireContext()).lastStatusBarColorState
+        MainActivity.Companion.setStatusBarTheme(requireActivity(), false)
     }
 
-    private void prepareView() {
-        lastColorState = Saver.getInstance(requireContext()).getLastStatusBarColorState();
-        MainActivity.setStatusBarTheme(requireActivity(), false);
+    private fun onClicks() {
+        backgroundFocus!!.setOnClickListener { view: View? -> dismiss(this@MaterialDialogFragment) }
     }
 
-    private void onClicks() {
-        backgroundFocus.setOnClickListener(view -> dismiss(MaterialDialogFragment.this));
+    private fun init(v: View) {
+        buttonsPanel = v.findViewById<LinearLayout>(R.id.dialog_buttons)
+        iconImage = v.findViewById<ImageView>(R.id.dialog_icon_image)
+        titleText = v.findViewById<TextView>(R.id.dialog_title_text)
+        messageText = v.findViewById<TextView>(R.id.dialog_message_text)
+        contentFrame = v.findViewById<FragmentContainerView>(R.id.dialog_content_frame)
+        primaryButtonView = v.findViewById<Button>(R.id.dialog_primary_button)
+        secondaryButtonView = v.findViewById<Button>(R.id.dialog_secondary_button)
+        naturalButtonView = v.findViewById<Button>(R.id.dialog_natural_button)
+        dialogCard = v.findViewById<CardView>(R.id.dialog_card)
+        backgroundFocus = v.findViewById<View>(R.id.dialog_focus)
+        dialogParent = v.findViewById<ConstraintLayout>(R.id.dialog_parent)
+        progressBar = v.findViewById<ProgressBar>(R.id.dialog_progress_bar)
     }
 
-    private void init(View v) {
-        buttonsPanel = v.findViewById(R.id.dialog_buttons);
-        iconImage = v.findViewById(R.id.dialog_icon_image);
-        titleText = v.findViewById(R.id.dialog_title_text);
-        messageText = v.findViewById(R.id.dialog_message_text);
-        contentFrame = v.findViewById(R.id.dialog_content_frame);
-        primaryButtonView = v.findViewById(R.id.dialog_primary_button);
-        secondaryButtonView = v.findViewById(R.id.dialog_secondary_button);
-        naturalButtonView = v.findViewById(R.id.dialog_natural_button);
-        dialogCard = v.findViewById(R.id.dialog_card);
-        backgroundFocus = v.findViewById(R.id.dialog_focus);
-        dialogParent = v.findViewById(R.id.dialog_parent);
-        progressBar = v.findViewById(R.id.dialog_progress_bar);
-    }
-
-    protected void setIcon(@Nullable Drawable icon) {
+    protected open fun setIcon(icon: Drawable?) {
         if (icon != null) {
-            iconImage.setVisibility(View.VISIBLE);
-            iconImage.setImageDrawable(icon);
+            iconImage!!.visibility = View.VISIBLE
+            iconImage!!.setImageDrawable(icon)
         } else {
-            iconImage.setVisibility(GONE);
-            iconImage.setImageResource(R.drawable.text);
+            iconImage!!.visibility = View.GONE
+            iconImage!!.setImageResource(R.drawable.text)
         }
     }
 
-    protected void setTitle(@Nullable String title) {
-        titleText.setText(title);
+    protected open fun setTitle(title: String?) {
+        titleText!!.text = title
         if (title != null) {
-            titleText.setVisibility(View.VISIBLE);
+            titleText!!.visibility = View.VISIBLE
         } else {
-            titleText.setVisibility(GONE);
+            titleText!!.visibility = View.GONE
         }
     }
 
-    protected void showProgressBar(boolean enable) {
+    protected fun showProgressBar(enable: Boolean) {
         if (enable) {
-            progressBar.setVisibility(VISIBLE);
+            progressBar!!.visibility = View.VISIBLE
         } else {
-            progressBar.setVisibility(GONE);
+            progressBar!!.visibility = View.GONE
         }
     }
 
-    protected void setMessage(@Nullable String message) {
-        messageText.setText(message);
+    protected open fun setMessage(message: String?) {
+        messageText!!.text = message
         if (message != null) {
-            messageText.setVisibility(View.VISIBLE);
-            messageText.setMovementMethod(new ScrollingMovementMethod());
+            messageText!!.visibility = View.VISIBLE
+            messageText!!.movementMethod = ScrollingMovementMethod()
         } else {
-            messageText.setVisibility(GONE);
+            messageText!!.visibility = View.GONE
         }
     }
 
-    protected void setCancelable(boolean cancelable) {
-        backgroundFocus.setClickable(cancelable);
+    protected open fun setCancelable(cancelable: Boolean) {
+        backgroundFocus!!.isClickable = cancelable
     }
 
-    protected void setPositiveButton(@Nullable String primaryButton, @Nullable View.OnClickListener clickListener) {
+    protected open fun setPositiveButton(
+        primaryButton: String?,
+        clickListener: View.OnClickListener?
+    ) {
         if (primaryButton != null) {
-            buttonsPanel.setVisibility(VISIBLE);
-            primaryButtonView.setText(primaryButton);
-            primaryButtonView.setOnClickListener(clickListener);
-            primaryButtonView.setVisibility(View.VISIBLE);
+            buttonsPanel!!.visibility = View.VISIBLE
+            primaryButtonView!!.text = primaryButton
+            primaryButtonView!!.setOnClickListener(clickListener)
+            primaryButtonView!!.visibility = View.VISIBLE
         } else {
-            primaryButtonView.setVisibility(GONE);
-            if (secondaryButtonView.getVisibility() == GONE && primaryButtonView.getVisibility() == GONE) {
-                buttonsPanel.setVisibility(GONE);
+            primaryButtonView!!.visibility = View.GONE
+            if (secondaryButtonView!!.visibility == View.GONE && primaryButtonView!!.visibility == View.GONE) {
+                buttonsPanel!!.visibility = View.GONE
             }
         }
     }
 
-    protected void setNegativeButton(@Nullable String secondaryButton, @Nullable View.OnClickListener clickListener) {
+    protected open fun setNegativeButton(
+        secondaryButton: String?,
+        clickListener: View.OnClickListener?
+    ) {
         if (secondaryButton != null) {
-            buttonsPanel.setVisibility(VISIBLE);
-            secondaryButtonView.setText(secondaryButton);
-            secondaryButtonView.setOnClickListener(clickListener);
-            secondaryButtonView.setVisibility(View.VISIBLE);
+            buttonsPanel!!.visibility = View.VISIBLE
+            secondaryButtonView!!.text = secondaryButton
+            secondaryButtonView!!.setOnClickListener(clickListener)
+            secondaryButtonView!!.visibility = View.VISIBLE
         } else {
-            secondaryButtonView.setVisibility(GONE);
-            if (secondaryButtonView.getVisibility() == GONE && primaryButtonView.getVisibility() == GONE) {
-                buttonsPanel.setVisibility(GONE);
+            secondaryButtonView!!.visibility = View.GONE
+            if (secondaryButtonView!!.visibility == View.GONE && primaryButtonView!!.visibility == View.GONE) {
+                buttonsPanel!!.visibility = View.GONE
             }
         }
     }
 
-    protected void setNaturalButton(@Nullable String naturalButton, @Nullable View.OnClickListener clickListener) {
+    protected open fun setNaturalButton(
+        naturalButton: String?,
+        clickListener: View.OnClickListener?
+    ) {
         if (naturalButton != null) {
-            naturalButtonView.setText(naturalButton);
-            naturalButtonView.setOnClickListener(clickListener);
-            naturalButtonView.setVisibility(View.VISIBLE);
+            naturalButtonView!!.text = naturalButton
+            naturalButtonView!!.setOnClickListener(clickListener)
+            naturalButtonView!!.visibility = View.VISIBLE
         } else {
-            naturalButtonView.setVisibility(GONE);
+            naturalButtonView!!.visibility = View.GONE
         }
     }
 
-    protected void setContentView(@Nullable Fragment contentView, boolean matchParent) {
+    protected fun setContentView(contentView: Fragment?, matchParent: Boolean) {
         if (contentView != null) {
-            this.contentView = contentView;
-            contentFrame.setVisibility(View.VISIBLE);
-            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) dialogCard.getLayoutParams();
+            this.contentView = contentView
+            contentFrame!!.visibility = View.VISIBLE
+            val params: ConstraintLayout.LayoutParams =
+                dialogCard!!.layoutParams as ConstraintLayout.LayoutParams
             if (matchParent) {
-                params.height = ConstraintLayout.LayoutParams.MATCH_PARENT;
+                params.height = ConstraintLayout.LayoutParams.MATCH_PARENT
             } else {
-                params.height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+                params.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
             }
-            dialogCard.setLayoutParams(params);
-            requireActivity().getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(contentFrame.getId(), contentView).addToBackStack(DIALOG_CONTENT_BACKSTACK).commit();
-            Log.d("TAG", "Fragments: " + requireActivity().getSupportFragmentManager().getFragments());
+            dialogCard!!.setLayoutParams(params)
+            requireActivity().supportFragmentManager.beginTransaction().setReorderingAllowed(true)
+                .add(contentFrame!!.id, contentView).addToBackStack(
+                DIALOG_CONTENT_BACKSTACK
+            ).commit()
+            Log.d("TAG", "Fragments: " + requireActivity().supportFragmentManager.fragments)
         } else {
-            contentFrame.setVisibility(GONE);
+            contentFrame!!.visibility = View.GONE
         }
     }
 
-    public void dismiss(@NonNull MaterialDialogFragment dialogFragment) {
-        ValueAnimator hideBackgroundFocus = ValueAnimator.ofObject(new ArgbEvaluator(), DEFAULT_COLOR, Color.argb(0, 33, 37, 41));
-        hideBackgroundFocus.addUpdateListener(valueAnimator -> backgroundFocus.setBackgroundColor((int) valueAnimator.getAnimatedValue()));
-        ObjectAnimator hideCardViewAlpha = ObjectAnimator.ofFloat(dialogCard, "alpha", 1f, 0f);
-        ObjectAnimator hideCardViewScaleX = ObjectAnimator.ofFloat(dialogCard, "scaleX", 1f, 0f);
-        ObjectAnimator hideCardViewScaleY = ObjectAnimator.ofFloat(dialogCard, "scaleY", 1f, 0f);
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(hideBackgroundFocus, hideCardViewAlpha, hideCardViewScaleX, hideCardViewScaleY);
-        animatorSet.setDuration(250);
-        animatorSet.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
+    fun dismiss(dialogFragment: MaterialDialogFragment) {
+        val hideBackgroundFocus: ValueAnimator =
+            ValueAnimator.ofObject(ArgbEvaluator(), DEFAULT_COLOR, Color.argb(0, 33, 37, 41))
+        hideBackgroundFocus.addUpdateListener { valueAnimator: ValueAnimator ->
+            backgroundFocus!!.setBackgroundColor(
+                valueAnimator.getAnimatedValue() as Int
+            )
+        }
+        val hideCardViewAlpha: ObjectAnimator = ObjectAnimator.ofFloat(dialogCard, "alpha", 1f, 0f)
+        val hideCardViewScaleX: ObjectAnimator =
+            ObjectAnimator.ofFloat(dialogCard, "scaleX", 1f, 0f)
+        val hideCardViewScaleY: ObjectAnimator =
+            ObjectAnimator.ofFloat(dialogCard, "scaleY", 1f, 0f)
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(
+            hideBackgroundFocus,
+            hideCardViewAlpha,
+            hideCardViewScaleX,
+            hideCardViewScaleY
+        )
+        animatorSet.setDuration(250)
+        animatorSet.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animator: Animator) {
             }
 
             @SuppressLint("SyntheticAccessor")
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (contentFrame.getVisibility() == VISIBLE) {
+            override fun onAnimationEnd(animator: Animator) {
+                if (contentFrame!!.getVisibility() == View.VISIBLE) {
                     try {
-                        requireActivity().getSupportFragmentManager().beginTransaction().remove(dialogFragment).remove(contentView).commit();
-                        if (((MaterialFragmentShower) dialogFragment).isHasContent()) {
-                            MaterialDialogFragment.this.show();
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .remove(dialogFragment).remove(
+                            contentView!!
+                        ).commit()
+                        if ((dialogFragment as MaterialFragmentShower).hasContent) {
+                            this@MaterialDialogFragment.show()
                         }
-                    } catch (IllegalStateException e) {
-                        e.printStackTrace();
+                    } catch (e: IllegalStateException) {
+                        e.printStackTrace()
                     }
                 } else {
-                    requireActivity().getSupportFragmentManager().beginTransaction().remove(dialogFragment).commit();
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .remove(dialogFragment).commit()
                 }
-                Log.d("TAG", "Fragments POPED: " + requireActivity().getSupportFragmentManager().getFragments());
-                dialogParent.setVisibility(GONE);
+                Log.d(
+                    "TAG",
+                    "Fragments POPED: " + requireActivity().supportFragmentManager.fragments
+                )
+                dialogParent!!.setVisibility(View.GONE)
                 if (dismissListener != null) {
-                    dismissListener.onDismissed();
+                    dismissListener!!.onDismissed()
                 }
-                MainActivity.setStatusBarTheme(requireActivity(), lastColorState);
+                MainActivity.Companion.setStatusBarTheme(requireActivity(), lastColorState)
             }
 
-            @Override
-            public void onAnimationCancel(Animator animator) {
+            override fun onAnimationCancel(animator: Animator) {
             }
 
-            @Override
-            public void onAnimationRepeat(Animator animator) {
+            override fun onAnimationRepeat(animator: Animator) {
             }
-        });
-        animatorSet.start();
+        })
+        animatorSet.start()
     }
 
-    protected void show() {
-        ValueAnimator showBackgroundFocus = ValueAnimator.ofObject(new ArgbEvaluator(), Color.argb(0, 33, 37, 41), DEFAULT_COLOR);
-        showBackgroundFocus.addUpdateListener(valueAnimator -> backgroundFocus.setBackgroundColor((int) valueAnimator.getAnimatedValue()));
-        ObjectAnimator showCardViewAlpha = ObjectAnimator.ofFloat(dialogCard, "alpha", 0f, 1f);
-        ObjectAnimator showCardViewScaleX = ObjectAnimator.ofFloat(dialogCard, "scaleX", 0f, 1.02f, 1f);
-        ObjectAnimator showCardViewScaleY = ObjectAnimator.ofFloat(dialogCard, "scaleY", 0f, 1.02f, 1f);
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(showBackgroundFocus, showCardViewAlpha, showCardViewScaleX, showCardViewScaleY);
-        animatorSet.setStartDelay(100);
-        animatorSet.setDuration(250);
-        animatorSet.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                dialogParent.setVisibility(View.VISIBLE);
+    protected fun show() {
+        val showBackgroundFocus: ValueAnimator =
+            ValueAnimator.ofObject(ArgbEvaluator(), Color.argb(0, 33, 37, 41), DEFAULT_COLOR)
+        showBackgroundFocus.addUpdateListener { valueAnimator: ValueAnimator ->
+            backgroundFocus!!.setBackgroundColor(
+                valueAnimator.getAnimatedValue() as Int
+            )
+        }
+        val showCardViewAlpha: ObjectAnimator = ObjectAnimator.ofFloat(dialogCard, "alpha", 0f, 1f)
+        val showCardViewScaleX: ObjectAnimator =
+            ObjectAnimator.ofFloat(dialogCard, "scaleX", 0f, 1.02f, 1f)
+        val showCardViewScaleY: ObjectAnimator =
+            ObjectAnimator.ofFloat(dialogCard, "scaleY", 0f, 1.02f, 1f)
+        val animatorSet: AnimatorSet = AnimatorSet()
+        animatorSet.playTogether(
+            showBackgroundFocus,
+            showCardViewAlpha,
+            showCardViewScaleX,
+            showCardViewScaleY
+        )
+        animatorSet.setStartDelay(100)
+        animatorSet.setDuration(250)
+        animatorSet.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animator: Animator) {
+                dialogParent!!.setVisibility(View.VISIBLE)
             }
 
-            @Override
-            public void onAnimationEnd(Animator animator) {
+            override fun onAnimationEnd(animator: Animator) {
             }
 
-            @Override
-            public void onAnimationCancel(Animator animator) {
+            override fun onAnimationCancel(animator: Animator) {
             }
 
-            @Override
-            public void onAnimationRepeat(Animator animator) {
+            override fun onAnimationRepeat(animator: Animator) {
             }
-        });
-        animatorSet.start();
+        })
+        animatorSet.start()
     }
 
-    public void setOnDismissListener(DialogDismissListener dismissListener) {
-        this.dismissListener = dismissListener;
+    fun setOnDismissListener(dismissListener: DialogDismissListener?) {
+        this.dismissListener = dismissListener
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(dismissReceiver, new IntentFilter(DISMISS_DIALOG_EVENT));
+    override fun onResume() {
+        super.onResume()
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
+            dismissReceiver!!, IntentFilter(
+                DISMISS_DIALOG_EVENT
+            )
+        )
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(dismissReceiver);
+    override fun onPause() {
+        super.onPause()
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(dismissReceiver!!)
+    }
+
+    companion object {
+        const val SIDE_ALERT_DIALOG: String = "side_alert_dialog"
+        const val SIDE_FRAGMENT_SHOWER: String = "side_fragment_shower"
+        const val DISMISS_DIALOG_EVENT: String = "dismiss_dialog_event"
+        const val DIALOG_BACKSTACK: String = "dialog_backstack"
+        const val DIALOG_CONTENT_BACKSTACK: String = "dialog_content_backstack"
+        private val DEFAULT_COLOR = Color.argb(185, 0, 0, 0)
     }
 }

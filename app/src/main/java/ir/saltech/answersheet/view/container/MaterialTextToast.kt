@@ -1,28 +1,17 @@
-package ir.saltech.answersheet.view.container;
+package ir.saltech.answersheet.view.container
 
-import android.content.Context;
+import android.content.Context
 
-import androidx.annotation.NonNull;
+class MaterialTextToast(context: Context) : MaterialToast(context) {
+    var duration: Long = 0
 
-public class MaterialTextToast extends MaterialToast {
-    private long duration;
-
-    public MaterialTextToast(@NonNull Context context) {
-        super(context);
-        super.init(getContentView());
+    init {
+        super.init(contentView)
     }
 
-    public long getDuration() {
-        return duration;
-    }
-
-    public void setDuration(long duration) {
-        this.duration = duration;
-    }
-
-    public void showToast() {
-        if (duration != 0) {
-            super.show(duration);
+    fun showToast() {
+        if (duration != 0L) {
+            super.show(duration)
         }
     }
 }

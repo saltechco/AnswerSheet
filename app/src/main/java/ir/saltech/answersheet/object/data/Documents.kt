@@ -1,71 +1,69 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import android.os.Environment;
-import android.util.Log;
+import android.os.Environment
+import android.util.Log
+import java.io.File
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+class Documents : Things() {
+    val things: List<Thing?>
+        get() = super.convertToThings(documentList)
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+    companion object {
+        const val DOCUMENTS_FOLDER: String = "/SalTech/Answer Sheet/Documents"
 
-public class Documents extends Things {
-	public static final String DOCUMENTS_FOLDER = "/SalTech/Answer Sheet/Documents";
+        val documentList: List<Document>
+            get() {
+                val documentList: MutableList<Document> = ArrayList()
+                val directory = documentsFolder
+                if (directory != null) {
+                    val files = directory.listFiles()
+                    if (files != null) {
+                        for (file in files) {
+                            if (Document.Companion.checkFileHasValidFormat(file.name)) {
+                                val document = Document()
+                                document.name = file.name.substring(0, file.name.lastIndexOf("."))
+                                document.documentFile = file
+                                document.fileSize = file.length().toDouble()
+                                documentList.add(document)
+                            }
+                        }
+                        for (j in documentList.indices) {
+                            for (k in documentList.indices) {
+                                if (documentList[j].name == documentList[k].name && j != k) {
+                                    if (documentList[k].documentFile!!.delete()) {
+                                        if (documentList[k].folderName != null) Log.i(
+                                            "TAG",
+                                            "File " + documentList[k].documentFile!!.name + " has been deleted because it was duplicated!"
+                                        )
+                                        documentList.removeAt(k)
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                        return documentList
+                    } else {
+                        return ArrayList()
+                    }
+                } else {
+                    Log.e("TAG", "ERROR Documents Directory IS EMPTY!")
+                    return ArrayList()
+                }
+            }
 
-	public List<Thing> getThings() {
-		return super.convertToThings(getDocumentList());
-	}
-
-	@NonNull
-	public static List<Document> getDocumentList() {
-		List<Document> documentList = new ArrayList<>();
-		File directory = getDocumentsFolder();
-		if (directory != null) {
-			File[] files = directory.listFiles();
-			if (files != null) {
-				for (File file : files) {
-					if (Document.checkFileHasValidFormat(file.getName())) {
-						Document document = new Document();
-						document.setName(file.getName().substring(0, file.getName().lastIndexOf(".")));
-						document.setDocumentFile(file);
-						document.setFileSize(file.length());
-						documentList.add(document);
-					}
-				}
-				for (int j = 0; j < documentList.size(); j++) {
-					for (int k = 0; k < documentList.size(); k++) {
-						if (documentList.get(j).getName().equals(documentList.get(k).getName()) && j != k) {
-							if (documentList.get(k).getDocumentFile().delete()) {
-								if (documentList.get(k).getFolderName() != null)
-									Log.i("TAG", "File " + documentList.get(k).getDocumentFile().getName() + " has been deleted because it was duplicated!");
-								documentList.remove(k);
-							}
-							break;
-						}
-					}
-				}
-				return documentList;
-			} else {
-				return new ArrayList<>();
-			}
-		} else {
-			Log.e("TAG", "ERROR Documents Directory IS EMPTY!");
-			return new ArrayList<>();
-		}
-	}
-
-	@Nullable
-	public static File getDocumentsFolder() {
-		File dir = new File(Environment.getExternalStorageDirectory().getPath() + DOCUMENTS_FOLDER);
-		if (!dir.exists()) {
-			if (dir.mkdirs()) {
-				return dir;
-			} else {
-				return null;
-			}
-		} else {
-			return dir;
-		}
-	}
+        val documentsFolder: File?
+            get() {
+                val dir =
+                    File(Environment.getExternalStorageDirectory().path + DOCUMENTS_FOLDER)
+                return if (!dir.exists()) {
+                    if (dir.mkdirs()) {
+                        dir
+                    } else {
+                        null
+                    }
+                } else {
+                    dir
+                }
+            }
+    }
 }

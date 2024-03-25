@@ -1,60 +1,52 @@
-package ir.saltech.answersheet.object.data;
+package ir.saltech.answersheet.`object`.data
 
-import androidx.annotation.NonNull;
+class Exams : Things {
+    private var examList: MutableList<Exam>
 
-import java.util.ArrayList;
-import java.util.List;
+    constructor() {
+        examList = ArrayList()
+    }
 
-public class Exams extends Things {
-	private List<Exam> examList;
+    constructor(examList: MutableList<Exam>) {
+        this.examList = examList
+    }
 
-	public Exams() {
-		examList = new ArrayList<>();
-	}
+    val things: List<Thing?>?
+        get() = super.convertToThings(examList)
 
-	public Exams(@NonNull List<Exam> examList) {
-		this.examList = examList;
-	}
+    fun getExamList(): List<Exam> {
+        return examList
+    }
 
-	public List<Thing> getThings() {
-		return super.convertToThings(examList);
-	}
+    fun setExamList(examList: MutableList<Exam>) {
+        this.examList = examList
+    }
 
-	@NonNull
-	public List<Exam> getExamList() {
-		return examList;
-	}
+    fun updateCurrentExam(currentExam: Exam) {
+        for (i in examList.indices) {
+            if (examList[i].id == currentExam.id) {
+                removeExam(i)
+                examList.add(i, currentExam)
+                break
+            }
+        }
+    }
 
-	public void setExamList(@NonNull List<Exam> examList) {
-		this.examList = examList;
-	}
+    fun addExam(newExam: Exam) {
+        examList.add(newExam)
+    }
 
-	public void updateCurrentExam(@NonNull Exam currentExam) {
-		for (int i = 0; i < examList.size(); i++) {
-			if (examList.get(i).getId() == currentExam.getId()) {
-				removeExam(i);
-				examList.add(i, currentExam);
-				break;
-			}
-		}
-	}
+    fun removeExam(examIndex: Int) {
+        examList.removeAt(examIndex)
+    }
 
-	public void addExam(@NonNull Exam newExam) {
-		examList.add(newExam);
-	}
+    override fun clearList() {
+        examList.clear()
+    }
 
-	public void removeExam(int examIndex) {
-		examList.remove(examIndex);
-	}
-
-	public void clearList() {
-		examList.clear();
-	}
-
-	@Override
-	public String toString() {
-		return "Exams{" +
-				"examList=" + examList +
-				'}';
-	}
+    override fun toString(): String {
+        return "Exams{" +
+                "examList=" + examList +
+                '}'
+    }
 }
